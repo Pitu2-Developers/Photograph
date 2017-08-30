@@ -1,51 +1,54 @@
 <template>
+
   <div id="app">
-    <img src="./assets/photograph-logo.png">
-    <h1>{{ msg }}</h1>
+    <Header></Header>
+    <!-- Component  -->
+    <SignUp></SignUp>
+    <Footer></Footer>
   </div>
+
 </template>
 
 <script>
-export default {
-  name: 'app',
-  data () {
-    return {
-      msg: 'Welcome to the Photograph'
+  import Header from './components/Header.vue';
+  import Footer from './components/Footer.vue';
+  import SignUp from './components/SignUp.vue';
+  export default {
+    name: 'app',
+    components:{Header,Footer,SignUp},
+    data () {
+      return {
+        msg: 'Welcome to the Photograph'
+      }
     }
   }
-}
 </script>
 
 <style lang="scss">
-img{
-  $s:300px;
-  width: $s;
-  height: $s;
-}
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  // Import fonts
+  @import url('https://fonts.googleapis.com/css?family=Open+Sans:300|Satisfy');
+  //Basic reset
+  *,  *::after,*::before{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Open Sans', sans-serif;
+  }
 
-h1, h2 {
-  font-weight: normal;
-}
+  .container{
+    width: 80%;
+    margin: auto;
+  }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
+  img{
+    $s:300px;
+    width: $s;
+    height: $s;
+  }
+  #app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #ff7300;
-}
 </style>

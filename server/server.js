@@ -1,7 +1,8 @@
 import app from './app';
 const server =require('http').Server(app);
-const io = require('socket.io')(server)
-//MongolDB
+const io = require('socket.io')(server);
+
+//MongolDB 
 import mongoose from 'mongoose';
 mongoose.Promise= global.Promise;
 import {PORT,URI} from './config';
