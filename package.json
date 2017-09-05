@@ -12,10 +12,13 @@
   "dependencies": {
     "bcrypt": "^1.0.3",
     "body-parser": "^1.17.2",
+    "cors": "^2.8.4",
     "express": "^4.15.4",
+    "jwt-simple": "^0.5.1",
     "mongoose": "^4.11.9",
     "socket.io": "^2.0.3",
-    "vue": "^2.3.3"
+    "vue": "^2.3.3",
+    "vuex": "^2.4.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

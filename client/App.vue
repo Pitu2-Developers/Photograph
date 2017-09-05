@@ -1,5 +1,4 @@
 <template>
-
   <div id="app">
     <Header></Header>
     <!-- Component  -->
@@ -13,6 +12,7 @@
   import Header from './components/Header.vue';
   import Footer from './components/Footer.vue';
   import SignUp from './components/SignUp.vue';
+
   export default {
     name: 'app',
     components:{Header,Footer,SignUp},
@@ -22,11 +22,13 @@
       }
     }
   }
+
 </script>
 
 <style lang="scss">
   // Import fonts
   @import url('https://fonts.googleapis.com/css?family=Open+Sans:300|Satisfy');
+  @import "styles/variables";
   //Basic reset
   *,  *::after,*::before{
       box-sizing: border-box;
@@ -44,11 +46,6 @@
     $s:300px;
     width: $s;
     height: $s;
-  }
-  #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
   }
 
 </style>
