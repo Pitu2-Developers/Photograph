@@ -2,20 +2,18 @@ import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 const Schema = mongoose.Schema;
 import {SALT_FACTOR} from '../config';
-
-/*
-  EXPONER
-  Crateristicas
-  requerimentos  ventajas y desventajas
-*/
-
+import moment from 'moment';
 
 const UserSchema=new Schema({
   first_name:{type:String, required:true},
   last_name:{type:String, required:true},
   email:{type:String, unique:true, required:true},
-  password:{type:String, required:true}
+  password:{type:String, required:true},
+  created_at:{type:String, default:moment().format()},
+  posts:[{type:Schema.ObjectId,ref:'Post'}]
 });
+
+
 
 
 UserSchema.pre('save',function (next) {
@@ -38,12 +36,9 @@ UserSchema.pre('save',function (next) {
 });
 
 
-
-UserSchema.methods.comaprePassword=function(password,cb) {
-  bcrypt.compare(password,this.password,(err,isMatch)=>{
-    if(err) return cb(err);
-    cb(null,isMatch)
-  });
+//
+UserSchema.methods.comparePassword=function(password) {
+  return bcrypt.compareSync(password,this.password);
 };
 
 

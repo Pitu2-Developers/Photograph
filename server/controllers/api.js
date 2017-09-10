@@ -1,24 +1,38 @@
 import User from '../models/user';
+import Post from '../models/post';
+// import {User,Post} from '../models/models';
 
 export const testController=(req,res)=>{
-  User.find({},(err,users)=>{
-    res.status(200).json(users);
-  });
+  Post.find({},(e,p)=>{
+       return res.status(200).send(p);
+  })
+
 }
 
 
 export const createUser=(req,res)=>{
-  const {first_name,last_name,email,password,confirmPassword}=req.body;
-    console.log(first_name);
-  let user=new User({
-    first_name:first_name,
-    last_name:last_name,
-    email:email,
-    password:password
+  let {first_name,last_name,email,password,confirmPassword} = req.body;
+
+  User.findOne({'email':email},(err,u)=>{
+    //Server error
+    if(err) return res.status(500).send(err);
+
+    // if user exist send error message
+    if(u) return res.status(400).send(`User already exists`);
+    else{
+      let user=new User({
+        email,
+        password,
+        first_name,
+        last_name,
+      });
+
+      user.save(err=>{
+        if(err) return res.status(500).send(err);
+        return res.status(200).send('User created successfully');
+      });
+    }
+
   });
 
-  user.save((err,u)=>{
-    if(err) res.status(500).send(err);
-    res.status(200).end();
-  });
 }
