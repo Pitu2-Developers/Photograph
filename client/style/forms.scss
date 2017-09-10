@@ -1,0 +1,138 @@
+.form,.registro,.form__header{
+  display: flex;
+  flex-direction: column;
+}
+.form__header{
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-bottom: 1px solid lightgray;
+
+}
+
+.form__info{
+  display: block;
+  font-size: 16px;
+  color: gray;
+  width: 70%;
+  text-align: center;
+  font-weight: bold;
+  padding: 5px;
+  // background: red;
+}
+
+
+.form__field{
+  position: relative;
+  // background: red;
+  margin-bottom: 15px;
+  .form__x{
+    color: red;
+    top:50%;
+    transform: translateY(-50%);
+    left: 95%;
+    position: absolute;
+  }
+}
+
+
+
+
+.form{
+	min-width: 350px;
+	height: auto;
+	padding: 10px 20px;
+	// border: 1px solid lightgray;
+  box-shadow: 0px 0px 1px 0px rgba(gray,0.5);
+	margin: auto;
+	align-items: center;
+	.title{
+		font-family: 'Satisfy';
+		font-size: 36px;
+		// width: 100%;
+		text-align: center;
+		// padding-bottom: 15px;
+		color: $primary-color;
+	}
+}
+.form__footer{
+	margin: 15px 0;
+	border-top: 1px solid lightgray;
+	padding-top: 15px;
+	width: 100%;
+	text-align: center;
+
+	p{
+		display: inline;
+		font-family: sans-serif;
+		font-size: 14px;
+	}
+
+	p:last-child{
+		color: $primary-color;
+		cursor: pointer;
+	}
+}
+
+.registro{
+  justify-content: center;
+  width: 100%;
+}
+.error{
+  font-size: 10px;
+  background: green;
+  margin: 0;
+  padding: 0;
+  color: #FF3722;
+  margin: auto;
+  font-family: 'Open Sans';
+}
+.danger{
+  border: 1px solid red;
+}
+.input{
+  width: 100%;
+  text-align: center;
+  padding: 5px;
+  border-radius: 3px;
+  border: 1px solid lightgray;
+  // margin-bottom: 15px;
+
+  font-family: 'Open sans';
+  font-size: 16px;
+  color: black;
+}
+
+
+
+.signin-form{
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+
+}
+.submit{
+	background-color: $primary-color;
+	border-radius: 5px;
+	border: none;
+	color: white;
+	font-family: 'Lobster';
+	font-size: 18px;
+  padding: 5px;
+}
+
+.form__terms{
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-size: 10px;
+  .form__span-bold{
+    font-weight: bold;
+  }
+}
+.form__span{
+  color: gray;
+}

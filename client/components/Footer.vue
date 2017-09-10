@@ -1,7 +1,7 @@
 <template >
   <footer class="footer">
-    <div class="container">
-      <p>Copyright (c) 2017 Copyright Holder All Rights Reserved.</p>
+    <div class="container center">
+      <p>PHOTOGRAPH (c) 2017 Copyright Holder All Rights Reserved.</p>
     </div>
   </footer>
 </template>
@@ -14,9 +14,9 @@ export default {
 
 <style lang="scss">
   .footer{
-    height: 3rem;
-    background-color: blue;
+    height: 2rem;
     p{
+      font-size: 11px;
       color: gray;
     }
   }

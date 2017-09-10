@@ -1,34 +1,25 @@
 <template>
+
   <div id="app">
-    <Header></Header>
-    <!-- Component  -->
-    <SignUp></SignUp>
-    <Footer></Footer>
+    <router-view></router-view>
   </div>
 
 </template>
 
 <script>
-  import Header from './components/Header.vue';
-  import Footer from './components/Footer.vue';
-  import SignUp from './components/SignUp.vue';
-
   export default {
     name: 'app',
-    components:{Header,Footer,SignUp},
-    data () {
-      return {
-        msg: 'Welcome to the Photograph'
-      }
-    }
   }
-
 </script>
 
 <style lang="scss">
-  // Import fonts
+  //Imports
+  // @import url('https://fonts.googleapis.com/css?family=Allura|Arizonia|Calligraffitti|Caveat:400,700|Clicker+Script|Cookie|Courgette|Great+Vibes|La+Belle+Aurore|Marck+Script|Nothing+You+Could+Do|Parisienne|Pinyon+Script|Qwigley|Rochester|Sacramento|Shadows+Into+Light|Shadows+Into+Light+Two|Tangerine:400,700');
   @import url('https://fonts.googleapis.com/css?family=Open+Sans:300|Satisfy');
-  @import "styles/variables";
+  @import "style/variables";
+  @import "style/styles";
+  @import "style/forms";
+
   //Basic reset
   *,  *::after,*::before{
       box-sizing: border-box;
@@ -42,10 +33,7 @@
     margin: auto;
   }
 
-  img{
-    $s:300px;
-    width: $s;
-    height: $s;
-  }
+
+  /* git@github.com:Pitu2-Developers/Photograph.git */
 
 </style>
