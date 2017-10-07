@@ -1,0 +1,37 @@
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .8s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+.flash{
+  border-radius: 5px;
+  padding: 4px;
+  border: 1px solid rgba(red,.3);
+  // background: $primary-color;
+  margin-bottom: 0.5rem;
+  transition: all ease 0.2s;
+  animation: enter 0.3s;
+  .container{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    width: 90%;
+  }
+  p,span{
+    color: red;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  p{
+    font-size: 12px;
+    // background: blue;
+  }
+  span{
+    cursor: pointer;
+    // background: red;
+    // line-height: 2;
+  }
+}

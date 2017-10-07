@@ -14,12 +14,12 @@
 
 <style lang="scss">
   //Imports
-  // @import url('https://fonts.googleapis.com/css?family=Allura|Arizonia|Calligraffitti|Caveat:400,700|Clicker+Script|Cookie|Courgette|Great+Vibes|La+Belle+Aurore|Marck+Script|Nothing+You+Could+Do|Parisienne|Pinyon+Script|Qwigley|Rochester|Sacramento|Shadows+Into+Light|Shadows+Into+Light+Two|Tangerine:400,700');
   @import url('https://fonts.googleapis.com/css?family=Open+Sans:300|Satisfy');
   @import "style/variables";
   @import "style/styles";
   @import "style/forms";
-
+  @import "style/flash";
+  @import "style/header";
   //Basic reset
   *,  *::after,*::before{
       box-sizing: border-box;
@@ -31,6 +31,13 @@
   .container{
     width: 80%;
     margin: auto;
+    @media screen and (max-width: 420px){
+      width: 90%;
+    }
+  }
+  .container--header{
+    display: flex;
+    justify-content: space-between;
   }
 
 

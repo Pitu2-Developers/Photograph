@@ -3,19 +3,48 @@ import Router from 'vue-router';
 
 // importar componentes
 import App    from './App.vue';
-import SignUp from './components/SignUp.vue';
-import SignIn from './components/SignIn.vue';
 import IndexLayout  from './components/IndexLayout.vue';
 import HomeLayout from './components/HomeLayout.vue';
+import SignIn from './components/SignIn.vue';
+import Index from './components/Index.vue';
+import Home from './components/Home.vue';
+import Profile from './components/Profile.vue';
+
+//Services
+import {isAuth} from '../services/index';
 
 Vue.use(Router);
 
-export default new Router({
 
-	routes: [
-		{ path: '/', component: IndexLayout },
-		{ path: '/profile', component: HomeLayout },
+const routes= [
+	{ path: '/', component: isAuth() ? HomeLayout : IndexLayout,
+		children:[
+			{
+					path:'',
+					name:isAuth() ? 'home':'login',
+					component: isAuth() ? Home : Index,
+					meta:{requiresAuth: isAuth() }
+			},
+			{
+				path:'profile',
+				name:'profile',
+				component: Profile,
+				meta:{ requiresAuth:true}
 
-	],
+			}
 
-mode:'history'});
+		]
+	},
+	{path:'*',redirect:'/'}
+
+]
+
+const router= new Router({routes,mode:'history'});
+
+router.beforeEach((to,from,next)=>{
+	if(!to.meta.requiresAuth ) next();
+	else if(isAuth()) next()
+	else next({name:'login'});
+});
+
+module.exports =router;

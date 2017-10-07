@@ -1,4 +1,8 @@
+$footer-h:2rem;
+a{
+  text-decoration: none;
 
+}
 .center{
   display: flex;
   justify-content: center;
@@ -7,5 +11,16 @@
 }
 
 .main-index{
-  height: calc(100vh - 2rem);
+  height: calc(100vh - #{$footer-h});
+  // background: green;
+}
+
+
+.footer{
+  height: $footer-h;
+  display: flex;
+  p{
+    font-size: 11px;
+    color: gray;
+  }
 }

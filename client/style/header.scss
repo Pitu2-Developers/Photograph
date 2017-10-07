@@ -1,0 +1,39 @@
+.header{
+  height: 3rem;
+  box-shadow:0px 1px 0px 0px rgba(#000,0.1);
+  background:$primary-color;
+}
+.logo{
+  font-size: 28px;
+  color: #fff;;
+}
+.header__title{
+  font-family: 'Satisfy', sans-serif;
+  font-weight: bold;
+  color: #fff;
+  font-size: 26px;
+}
+.header__logo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header__icons{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+
+  a,i{
+
+    color:#fff;;
+    cursor: pointer;
+    font-size: 20px;
+    margin-right: 1.3rem;
+    &:last-child{
+      // background: red;
+      margin-right: 0;
+    }
+  }
+}

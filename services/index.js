@@ -3,6 +3,31 @@ import moment from 'moment';
 import {SECRET_TOKEN} from '../server/config';
 
 
+
+export function decodeToken(token){
+
+  const decode= new Promise( (resolve, reject) => {
+      try {
+        const payload= jwt.decode(token,SECRET_TOKEN);
+        if(payload.exp <= moment.unix()){
+          reject({
+            status:401,
+            message:'Expired token'
+          });
+        }
+        resolve(payload.sub);
+      } catch (e) {
+        reject({
+          status:500,
+          message:'Invalid token'
+        })
+      }
+  });
+
+  return decode;
+
+}
+
 export function createToken(user) {
   const payload={
     //User id
@@ -21,7 +46,10 @@ export function createToken(user) {
 export function isAuth() {
   const token=localStorage.getItem('token');
   try {
-    const payload=jwt.decode(token,SECRET);
+    const payload=jwt.decode(token,SECRET_TOKEN);
+    if(payload.exp <= moment.unix()){
+      return false;
+    }
     return true;
   } catch (e) {
     return false;
