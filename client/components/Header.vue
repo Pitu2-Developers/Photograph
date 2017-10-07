@@ -1,28 +1,25 @@
 <template>
     <header class="header center">
-        <h1>profile</h1>
+      <div  class="container container--header">
+        <div class="header__logo">
+          <router-link to="/" class="header__title">Photograp</router-link>
+        </div>
+        <div class="header__icons">
+          <router-link to="/profile" title="Profile" class="icon-user"></router-link>
+          <i title="Notifications" class="icon-heart-o"></i>
+          <i @click="logout()" title="Explore" class="icon-search"></i>
+        </div>
+      </div>
     </header>
 </template>
 
 <script>
-  export default {
-
-
+export default {
+  methods:{
+    logout(){
+      this.$store.dispatch('logout')
+      location.reload();
+    }
   }
+}
 </script>
-
-<style lang="scss">
-  .header{
-    height: 3rem;
-    box-shadow:0px 1px 0px 0px rgba(#000,0.1);
-  }
-  .header__title{
-    font-family: 'Satisfy', sans-serif;
-    font-weight: lighter;
-  }
-  .logo{
-    $s:40px;
-    width: $s;
-    height: $s;
-  }
-</style>

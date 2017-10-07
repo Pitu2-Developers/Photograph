@@ -11,7 +11,10 @@ export const SignIn =(req,res)=>{
     //
     if(!user) return res.status(403).send({text:'Email doesn\'t match any account',type:'email'});
     //compare password true: send token
-    if(user.comparePassword(password)) return res.status(200).send({token:createToken(user)});
+    if(user.comparePassword(password)){
+      let {first_name,last_name,email}=user;
+      return res.status(200).send({user:{first_name,last_name,email},token:createToken(user)});
+    }
     // false: send a message => response.data.text and error type
     else return res.status(400).send({text:'The password you\'ve entered is incorrect', type:'password'});
 

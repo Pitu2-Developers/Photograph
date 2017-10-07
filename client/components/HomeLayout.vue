@@ -1,8 +1,8 @@
 <template>
   <div>
     <Header></Header>
-    <main>
-      <h1>PENE DE NEGRO</h1>
+    <main class="main-index">
+      <router-view></router-view>
     </main>
     <Footer></Footer>
   </div>

@@ -10,7 +10,8 @@ const UserSchema=new Schema({
   email:{type:String, unique:true, required:true},
   password:{type:String, required:true},
   created_at:{type:String, default:moment().format()},
-  posts:[{type:Schema.ObjectId,ref:'Post'}]
+  posts:[{type:Schema.ObjectId,ref:'Post'}],
+  friends:[{type:Schema.ObjectId,ref:'User'}]
 });
 
 

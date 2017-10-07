@@ -1,5 +1,6 @@
 import User from '../models/user';
 import Post from '../models/post';
+import {createToken} from '../../services/index';
 // import {User,Post} from '../models/models';
 
 export const testController=(req,res)=>{
@@ -29,7 +30,7 @@ export const createUser=(req,res)=>{
 
       user.save(err=>{
         if(err) return res.status(500).send(err);
-        return res.status(200).send('User created successfully');
+        return res.status(200).send({token:createToken(user)});
       });
     }
 

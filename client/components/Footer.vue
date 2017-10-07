@@ -11,13 +11,3 @@ export default {
 
 }
 </script>
-
-<style lang="scss">
-  .footer{
-    height: 2rem;
-    p{
-      font-size: 11px;
-      color: gray;
-    }
-  }
-</style>
