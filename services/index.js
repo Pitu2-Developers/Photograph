@@ -47,7 +47,7 @@ export function isAuth() {
   const token=localStorage.getItem('token');
   try {
     const payload=jwt.decode(token,SECRET_TOKEN);
-    if(payload.exp <= moment.unix()){
+    if(payload.exp <= moment().unix()){
       return false;
     }
     return true;

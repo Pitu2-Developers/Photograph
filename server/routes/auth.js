@@ -1,9 +1,8 @@
 import express from 'express';
 const auth = express.Router();
 import {SignIn} from '../controllers/auth';
-import {isAuth} from '../middlewares';
 
-auth.post('/photograph',isAuth,SignIn)
+auth.post('/photograph',SignIn)
 
 
 

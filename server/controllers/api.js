@@ -4,9 +4,8 @@ import {createToken} from '../../services/index';
 // import {User,Post} from '../models/models';
 
 export const testController=(req,res)=>{
-  Post.find({},(e,p)=>{
-       return res.status(200).send(p);
-  })
+  console.log(req.headers);
+  res.status(200).send(req.headers)
 
 }
 

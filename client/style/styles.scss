@@ -3,6 +3,17 @@ a{
   text-decoration: none;
 
 }
+button{
+  outline: none;
+  border:none;
+  padding: 5px;
+  border-radius: 20px;
+  &:active{
+    transform: scale(0.9);
+  }
+
+}
+
 .center{
   display: flex;
   justify-content: center;

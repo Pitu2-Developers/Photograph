@@ -30,7 +30,6 @@ export default{
 
       return axios.post(URL,DATA)
       .then(response=>{
-        console.log("LOG");
         localStorage.setItem('token',response.data.token);
         commit(ADD_USER,response.data.user);
         commit(LOGIN_SUCCESS);
