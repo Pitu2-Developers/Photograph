@@ -5,7 +5,7 @@
   "author": "Pitu2-Developers",
   "private": true,
   "scripts": {
-    "server": "nodemon  --exec 'babel-node' server/server.js",
+    "server": "./node_modules/nodemon/bin/nodemon.js --exec 'babel-node' server/server.js",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot & yarn run server ",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },

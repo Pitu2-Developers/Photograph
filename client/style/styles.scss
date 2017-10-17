@@ -24,3 +24,130 @@ a{
     color: gray;
   }
 }
+
+.profile-box{
+  width: 100%;
+  padding: 20px 40px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  .type-layout{
+    display: flex;
+    justify-content: space-around;
+    width: 100px;
+    margin-top: 5px;
+
+    img{
+      width: 40px;
+      height: 40px;
+    }
+  }
+}
+
+.profile-info{
+  width: 100%;
+  border: none;
+  box-shadow: 0 0 5px gray;
+  padding: 20px 10px;
+  border-radius: 5px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+
+  figure{
+    padding: 10px 0;
+
+    img{
+      width: 200px;
+      height: 200px;
+      border-radius: 100%;
+    }
+
+    figcaption{
+      font-weight: bold;
+      color: gray;
+    }
+
+  }
+  
+  .edit-profile{
+    display: inline;
+    background-color: $primary-color;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    align-self: flex-end;
+  }
+
+}
+
+.more-about-user{
+  padding: 10px 0;
+  width: 40%;
+  margin: auto;
+  border-top: 1px solid rgba(0,0,0,0.3);
+
+  display: flex;
+  justify-content: space-around;
+
+}
+
+.profile-content{
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 0 5px gray;
+  margin-top: 15px;
+  padding: 20px 0;
+  text-align: center;
+  width: 100%;
+  
+  display: flex;
+}
+
+.show-some{
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  figure{
+    height: 300px;
+    margin-bottom: 10px;
+    width: 400px;
+  
+    align-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    img{
+      border-radius: 5px;
+      height: 80%;
+      width: 80%;
+    }
+  }
+}
+
+.show-by-one{
+  align-content: center;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  figure{
+    margin-bottom: 50px;
+    width: 80%;
+
+    img{
+      border-radius: 5px;
+      height: 80%;
+      width: 80%;
+    }
+  }
+}
