@@ -26,13 +26,13 @@ a{
 }
 
 .profile-box{
-  width: 100%;
-  padding: 20px 40px;
-  margin: auto;
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: space-around;
+  margin: auto;
+  padding: 20px 40px;
+  width: 100%;
 
   .type-layout{
     align-self: center;
@@ -49,16 +49,15 @@ a{
 }
 
 .profile-info{
-  width: 100%;
+  border-radius: 5px;
   border: none;
   box-shadow: 0 0 5px gray;
-  padding: 20px 10px;
-  border-radius: 5px;
-  text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
-
+  padding: 20px 10px;
+  text-align: center;
+  width: 100%;
 
   figure{
     padding: 10px 0;
@@ -76,22 +75,26 @@ a{
 
   }
   
-  .edit-profile{
+  .edit-icon{
     align-self: flex-end;
     border-radius: 100px;
     box-shadow: 0 0 1px gray;
     color: white;
     display: flex;
+    align-items:center;
     font-weight: bold;
-    height: 30px;
+    height: 35px;
     padding: 5px;
     transition-duration: 0.2s;
-    width: 30px;
+    width: 35px;
 
-    img{
-      display: inline;
-      width: 20px;
-      height: 20px;
+    figure{
+      display: flex;
+
+      img{
+        height: 25px;
+        width: 25px;
+      }
     }
 
     &:hover{
@@ -99,6 +102,27 @@ a{
     }
   }
 
+}
+
+.profile-edit{
+  @extend .profile-info;
+  width: 100%;
+
+  .profile-edit-buttons{
+    display: flex;
+    padding: 10px 0;
+    justify-content: space-around;
+    width: 20%;
+    margin: auto;
+  }
+
+}
+
+.button{
+  padding: 5px 10px;
+  background-color: $primary-color;
+  color: white;
+  border-radius: 5px;
 }
 
 .more-about-user{

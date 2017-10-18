@@ -1,8 +1,10 @@
 <template >
 	<section class="profile-box">
-		<figure class="edit-profile">
-			<img src="/client/assets/settings.svg">
-		</figure>
+		<router-link to="/profile/edit" class="edit-icon">
+			<figure>
+				<img src="/client/assets/settings.svg">
+			</figure>
+		</router-link>
 
 		<figure>
 			<img src="https://raw.githubusercontent.com/Ashwinvalento/cartoon-avatar/master/lib/images/female/68.png">
@@ -29,7 +31,6 @@
 				<p>Following</p>
 			</div>
 		</div>
-
 	</section>
 </template>
 

@@ -9,6 +9,7 @@ import SignIn from './components/SignIn.vue';
 import Index from './components/Index.vue';
 import Home from './components/Home.vue';
 import Profile from './components/Profile.vue';
+import ProfileEdit from './components/ProfileEdit.vue';
 
 //Services
 import {isAuth} from '../services/index';
@@ -20,19 +21,22 @@ const routes= [
 	{ path: '/', component: isAuth() ? HomeLayout : IndexLayout,
 		children:[
 			{
-					path:'',
-					name:isAuth() ? 'home':'login',
-					component: isAuth() ? Home : Index,
-					meta:{requiresAuth: isAuth() }
+				path:'',
+				name:isAuth() ? 'home':'login',
+				component: isAuth() ? Home : Index,
+				meta:{requiresAuth: isAuth() }
 			},
 			{
 				path:'profile',
 				name:'profile',
 				component: Profile,
-				meta:{ requiresAuth:true}
-
+				meta:{ requiresAuth:true},
+			},
+			{
+				path: 'profile/edit',
+				name: 'profile_edit',
+				component: ProfileEdit
 			}
-
 		]
 	},
 	{path:'*',redirect:'/'}
