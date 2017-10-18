@@ -1,8 +1,8 @@
 <template >
-	<section class="profile-info">
-		<a href="#" class="edit-profile">
-			editar perfil
-		</a>
+	<section class="profile-box">
+		<figure class="edit-profile">
+			<img src="/client/assets/settings.svg">
+		</figure>
 
 		<figure>
 			<img src="https://raw.githubusercontent.com/Ashwinvalento/cartoon-avatar/master/lib/images/female/68.png">

@@ -1,10 +1,12 @@
 <template >
 	<section class="profile-box">
-		<ProfileInfo></ProfileInfo>
-		
-		<div class="type-layout">
-			<img @click="show_one()" src="/client/assets/kebab-vertical.svg">
-			<img @click="show_some()" src="/client/assets/kebab-horizontal.svg">
+		<div class="profile-info">
+			<ProfileInfo></ProfileInfo>
+			
+			<div class="type-layout">
+				<img @click="show_one()" src="/client/assets/list-unordered.svg">
+				<img @click="show_some()" src="/client/assets/kebab-horizontal.svg">
+			</div>
 		</div>
 
 		<ProfileContent class="profile-content" v-bind:class="{'show-some': showSome, 'show-by-one': showByOne}"></ProfileContent>
