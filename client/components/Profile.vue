@@ -4,8 +4,8 @@
 			<ProfileInfo></ProfileInfo>
 			
 			<div class="type-layout">
-				<img @click="show_one()" src="/client/assets/list-unordered.svg">
-				<img @click="show_some()" src="/client/assets/kebab-horizontal.svg">
+				<img v-bind:class="{'option-selected': !showSome}" @click="show_one()" src="/client/assets/list-unordered.svg">
+				<img v-bind:class="{'option-selected': !showByOne}" @click="show_some()" src="/client/assets/kebab-horizontal.svg">
 			</div>
 		</div>
 
