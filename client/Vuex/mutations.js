@@ -21,7 +21,10 @@ export default{
 
   },
   [ADD_USER](state,user){
+<<<<<<< HEAD
     state.user._id=user._id;
+=======
+>>>>>>> ca2c4304ac2911810790dd0b10ce53bddf3f8840
     state.user.first_name=user.first_name;
     state.user.last_name=user.last_name;
     state.user.email=user.email;

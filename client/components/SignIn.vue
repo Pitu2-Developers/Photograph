@@ -42,7 +42,15 @@ export default {
       let {email,password}=this.data
       this.$store.dispatch("login",{email,password} ).
       then(()=>{
+<<<<<<< HEAD
         this.$router.go(this.$router.currentRoute);
+=======
+        // location.reload(
+        console.log("HOLI1");
+        this.$router.go(this.$router.currentRoute);
+        console.log(this.$router);
+
+>>>>>>> ca2c4304ac2911810790dd0b10ce53bddf3f8840
       })
       .catch(err =>{
         this.error.message=err.response.data.text;

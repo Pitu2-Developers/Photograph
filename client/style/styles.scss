@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import './post';
 $footer-h:2rem;
 
@@ -52,7 +53,13 @@ img{
   margin: auto;
   display: block;
 }
+=======
+$footer-h:2rem;
+a{
+  text-decoration: none;
+>>>>>>> ca2c4304ac2911810790dd0b10ce53bddf3f8840
 
+}
 .center{
   display: flex;
   justify-content: center;
@@ -65,6 +72,7 @@ img{
   // background: green;
 }
 
+<<<<<<< HEAD
 .container--fixed{
   position: fixed;
   left: 0;
@@ -92,5 +100,195 @@ img{
   p{
     font-size: 11px;
     color: gray;
+=======
+
+.footer{
+  height: $footer-h;
+  display: flex;
+  p{
+    font-size: 11px;
+    color: gray;
+  }
+}
+
+.profile-box{
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: auto;
+  padding: 20px 40px;
+  width: 100%;
+
+  .type-layout{
+    align-self: center;
+    display: flex;
+    justify-content: space-around;
+    width: 80px;
+    border-radius: 5px;
+    margin-top: 5px;
+    border: 1px solid gray;
+
+    img{
+      width: 40px;
+      height: 40px;
+    }
+
+    img:first-child{
+      border-bottom-left-radius: 4px;
+      border-top-left-radius: 4px;
+    }
+
+    img:last-child{
+      border-bottom-right-radius: 4px;
+      border-top-right-radius: 4px;
+    }
+
+    .option-selected{
+      background-color: #0F96FB;
+    }
+  }
+}
+
+.profile-info{
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 0 5px gray;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px 10px;
+  text-align: center;
+  width: 100%;
+
+  figure{
+    padding: 10px 0;
+
+    img{
+      width: 200px;
+      height: 200px;
+      border-radius: 100%;
+    }
+
+    figcaption{
+      font-weight: bold;
+      color: gray;
+    }
+
+  }
+  
+  .edit-icon{
+    align-self: flex-end;
+    border-radius: 100px;
+    box-shadow: 0 0 1px gray;
+    color: white;
+    display: flex;
+    align-items:center;
+    font-weight: bold;
+    height: 35px;
+    padding: 5px;
+    transition-duration: 0.2s;
+    width: 35px;
+
+    figure{
+      display: flex;
+
+      img{
+        height: 25px;
+        width: 25px;
+      }
+    }
+
+    &:hover{
+      box-shadow: 0 0 5px black;
+    }
+  }
+
+}
+
+.profile-edit{
+  @extend .profile-info;
+  width: 100%;
+
+  .profile-edit-buttons{
+    display: flex;
+    padding: 10px 0;
+    justify-content: space-around;
+    width: 20%;
+    margin: auto;
+  }
+
+}
+
+.button{
+  padding: 5px 10px;
+  background-color: $primary-color;
+  color: white;
+  border-radius: 5px;
+}
+
+.more-about-user{
+  padding: 10px 0;
+  width: 40%;
+  margin: auto;
+  border-top: 1px solid rgba(0,0,0,0.3);
+
+  display: flex;
+  justify-content: space-around;
+
+}
+
+.profile-content{
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 0 5px gray;
+  margin-top: 15px;
+  padding: 20px 0;
+  text-align: center;
+  width: 100%;
+  
+  display: flex;
+}
+
+.show-some{
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  figure{
+    height: 300px;
+    margin-bottom: 10px;
+    width: 400px;
+  
+    align-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    img{
+      border-radius: 5px;
+      height: 80%;
+      width: 80%;
+    }
+>>>>>>> ca2c4304ac2911810790dd0b10ce53bddf3f8840
+  }
+}
+
+.show-by-one{
+  align-content: center;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  figure{
+    margin-bottom: 50px;
+    width: 80%;
+
+    img{
+      border-radius: 5px;
+      height: 80%;
+      width: 80%;
+    }
   }
 }

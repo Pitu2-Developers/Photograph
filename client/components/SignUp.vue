@@ -52,11 +52,18 @@
         error:{
           message:'',
           isError:false
+<<<<<<< HEAD
         }
+=======
+
+        },
+        isLoading:this.$store.state.pending,
+>>>>>>> ca2c4304ac2911810790dd0b10ce53bddf3f8840
       }
     },
     methods:{
       handleSubmit(){
+<<<<<<< HEAD
         let {first_name,last_name,email,password,confirmPassword}=this.data;
         this.$store.dispatch('signup',{first_name,last_name,email,password,confirmPassword})
         .then(()=>{
@@ -68,16 +75,37 @@
           this.error.message=err.response.data;
           this.error.isError=true;
 
+=======
+        const URL='http://localhost:8000/api/users'
+        const DATA= qs.stringify(this.data);
+        this.isLoading=true;
+        axios.post(URL,DATA)
+        .then(response=>{
+          console.log(response.data);
+          this.isLoading=false;
+          setTimeout(()=>{
+            localStorage.setItem('token',response.data.token);
+            location.reload();
+          },1000);
+        })
+        .catch(err=>{
+          this.isLoading=false;
+          this.error.message=err.response.data;
+          this.error.isError=true;
+>>>>>>> ca2c4304ac2911810790dd0b10ce53bddf3f8840
         });
       },
       show(){
         this.error.isError=!this.error.isError;
       }
+<<<<<<< HEAD
     },
     computed:{
       isLoading(){
         return this.$store.state.isLoading;
       }
+=======
+>>>>>>> ca2c4304ac2911810790dd0b10ce53bddf3f8840
     }
   }
 </script>

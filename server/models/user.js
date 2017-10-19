@@ -14,11 +14,16 @@ const UserSchema=new Schema({
   password:{type:String, required:true},
 
   created_at:{type:String, default:moment().format()},
+<<<<<<< HEAD
 
   posts:[{type:Schema.ObjectId,ref:'Post'}],
 
   friends:[{type:Schema.ObjectId,ref:'User'}]
 
+=======
+  posts:[{type:Schema.ObjectId,ref:'Post'}],
+  friends:[{type:Schema.ObjectId,ref:'User'}]
+>>>>>>> ca2c4304ac2911810790dd0b10ce53bddf3f8840
 });
 
 

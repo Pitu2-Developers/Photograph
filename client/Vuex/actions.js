@@ -1,7 +1,11 @@
+<<<<<<< HEAD
 import {SIGNUP,SIGNUP_SUCCESS,
         SIGNUP_FAILURE,LOGIN,
         LOGIN_SUCCESS,LOGIN_FAILURE,
         LOGOUT,ADD_USER} from './constants';
+=======
+import {LOGIN,LOGIN_SUCCESS,LOGIN_FAILURE,LOGOUT,ADD_USER} from './constants';
+>>>>>>> ca2c4304ac2911810790dd0b10ce53bddf3f8840
 import axios from 'axios';
 import qs from 'querystring';
 
@@ -22,6 +26,7 @@ export default{
         return Promise.reject(err);
       });
     },
+<<<<<<< HEAD
     signup({commit},data){
       console.log(data);
       commit(LOGIN);
@@ -44,13 +49,19 @@ export default{
       console.log(data);
       commit(ADD_USER,data);
     },
+=======
+>>>>>>> ca2c4304ac2911810790dd0b10ce53bddf3f8840
     logout({commit}){
       localStorage.removeItem('token');
       localStorage.removeItem('vuex');
       commit(LOGOUT);
+<<<<<<< HEAD
     },
     fetch_data({commit}){
       
     }
 
+=======
+    }
+>>>>>>> ca2c4304ac2911810790dd0b10ce53bddf3f8840
 }

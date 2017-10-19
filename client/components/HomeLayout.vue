@@ -1,7 +1,11 @@
 <template>
   <div>
     <Header></Header>
+<<<<<<< HEAD
     <main class="main">
+=======
+    <main class="main-index">
+>>>>>>> ca2c4304ac2911810790dd0b10ce53bddf3f8840
       <router-view></router-view>
     </main>
   </div>

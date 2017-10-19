@@ -1,5 +1,6 @@
 <template>
   <div >
+<<<<<<< HEAD
     <!-- <h1>WELCOME {{name}}</h1> -->
     <img class="preview-image" :src="image">
     <section class="post-container">
@@ -38,10 +39,14 @@
       </article>
     </section>
     <ImageButton @myEvent2="getImage"></ImageButton>
+=======
+    <h1>WELCOME {{name}}</h1>
+>>>>>>> ca2c4304ac2911810790dd0b10ce53bddf3f8840
   </div>
 </template>
 
 <script>
+<<<<<<< HEAD
   import axios from 'axios';
   import ImageButton from './ImageButton.vue';
   import {decodeToken} from '../../services';
@@ -76,11 +81,20 @@
         // var socket=io.connect('http://localhost:8000',{'forceNew':true});
 
 
+=======
+
+  export default {
+    data(){
+      return{
+        name:this.$store.state.user.first_name
+      }
+>>>>>>> ca2c4304ac2911810790dd0b10ce53bddf3f8840
     },
     methods:{
       logout(){
         this.$store.dispatch('logout')
         location.reload();
+<<<<<<< HEAD
       },
       getImage(e){
         console.log(e);
@@ -111,6 +125,8 @@
     computed:{
       getPost(){
 
+=======
+>>>>>>> ca2c4304ac2911810790dd0b10ce53bddf3f8840
       }
     }
   }

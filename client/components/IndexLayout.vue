@@ -9,4 +9,8 @@
 	export default{
 		components:{Footer}
 	}
+<<<<<<< HEAD
 </script>
+=======
+</script>
+>>>>>>> ca2c4304ac2911810790dd0b10ce53bddf3f8840

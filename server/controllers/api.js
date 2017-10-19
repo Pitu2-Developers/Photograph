@@ -1,6 +1,7 @@
 import User from '../models/user';
 import Post from '../models/post';
 import {createToken} from '../../services/index';
+<<<<<<< HEAD
 import fs from 'fs';
 
 
@@ -28,6 +29,9 @@ export const uploadController=(req,res,next)=>{
   res.status(200).send({test:1});
 
 }
+=======
+// import {User,Post} from '../models/models';
+>>>>>>> ca2c4304ac2911810790dd0b10ce53bddf3f8840
 
 export const testController=(req,res)=>{
 
@@ -105,8 +109,12 @@ export const createUser=(req,res)=>{
 
       user.save(err=>{
         if(err) return res.status(500).send(err);
+<<<<<<< HEAD
         let {first_name,last_name,email,_id} = user;
         return res.status(200).send({user:{_id,first_name,last_name,email},token:createToken(user)});
+=======
+        return res.status(200).send({token:createToken(user)});
+>>>>>>> ca2c4304ac2911810790dd0b10ce53bddf3f8840
       });
     }
 

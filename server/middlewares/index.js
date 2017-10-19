@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import jwt from 'jwt-simple';
 
 import {SECRET_TOKEN} from '../config';
@@ -15,4 +16,11 @@ export function isAuth(req,res,next) {
   } catch (e) {
     return res.status(403).send("don't have access");
   }
+=======
+
+
+export function isAuth(req,res,next) {
+  console.log(req.headers);
+  next();
+>>>>>>> ca2c4304ac2911810790dd0b10ce53bddf3f8840
 }
