@@ -1,4 +1,32 @@
+@import './post';
 $footer-h:2rem;
+
+//Basic reset
+*,  *::after,*::before{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body{
+  background: #eeefff;
+}
+
+
+
+.container{
+  width: 80%;
+  margin: auto;
+  @media screen and (max-width: 420px){
+    width: 90%;
+  }
+}
+.container--header{
+  display: flex;
+  justify-content: space-between;
+}
+
 a{
   text-decoration: none;
 
@@ -14,6 +42,17 @@ button{
 
 }
 
+img{
+  display: block;
+  width: 100%;
+}
+
+.preview-image{
+  width: 30%;
+  margin: auto;
+  display: block;
+}
+
 .center{
   display: flex;
   justify-content: center;
@@ -24,6 +63,26 @@ button{
 .main-index{
   height: calc(100vh - #{$footer-h});
   // background: green;
+}
+
+.container--fixed{
+  position: fixed;
+  left: 0;
+  top:calc(100% - 50px);
+  // padding: 10px;
+  // background: steelblue;
+  width: 100%;
+  height: 50px;
+  .end{
+    display: flex;
+    justify-content: flex-end;
+    @media screen and (max-width:768px){
+      width: 100%;
+      .input__file{
+        margin-right: 0.5rem;
+      }
+    }
+  }
 }
 
 

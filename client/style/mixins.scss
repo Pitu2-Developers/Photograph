@@ -1,0 +1,10 @@
+@mixin flexAbsoluteCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flexHorizontalCenter {
+  display: flex;
+  justify-content: center;
+}

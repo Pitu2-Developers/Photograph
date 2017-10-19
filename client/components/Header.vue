@@ -6,7 +6,7 @@
         </div>
         <div class="header__icons">
           <router-link to="/profile" title="Profile" class="icon-user"></router-link>
-          <i title="Notifications" class="icon-heart-o"></i>
+          <i title="Notifications" class="icon-heart"></i>
           <i @click="logout()" title="Explore" class="icon-search"></i>
         </div>
       </div>

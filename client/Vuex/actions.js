@@ -40,9 +40,17 @@ export default{
       });
 
     },
+    reload({commit},data){
+      console.log(data);
+      commit(ADD_USER,data);
+    },
     logout({commit}){
       localStorage.removeItem('token');
       localStorage.removeItem('vuex');
       commit(LOGOUT);
+    },
+    fetch_data({commit}){
+      
     }
+
 }

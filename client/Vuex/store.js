@@ -12,6 +12,7 @@ export const initialState={
   isLoggedIn:isAuth(),
   isLoading:false,
   user:{
+    _id:null,
     first_name:'',
     last_name:'',
     email:'',

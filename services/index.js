@@ -35,7 +35,7 @@ export function createToken(user) {
     //Issued at
     iat:moment().unix(),
     //expire time
-    exp:moment().add(10,'days').unix()
+    exp:moment().add(1,'days').unix()
   };
 
   return jwt.encode(payload,SECRET_TOKEN);

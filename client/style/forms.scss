@@ -45,6 +45,7 @@
   box-shadow: 0px 0px 1px 0px rgba(gray,0.5);
 	margin: auto;
 	align-items: center;
+  background: #fff;
 	.title{
 		font-family: 'Satisfy';
 		font-size: 36px;
@@ -148,4 +149,38 @@
 }
 .form__span{
   color: gray;
+}
+
+// INPUT FILE
+#file{
+  display: none;
+}
+
+.input__file{
+  $size:50px;
+  display: block;
+  background: $primary-color;
+  border-radius: 50%;
+  height: $size;
+  width: $size;
+  margin-top: -0.5rem;
+  // margin-right: 0.5rem;
+  @include flexAbsoluteCenter;
+  &--icon{
+    height: $size;
+    width: $size;
+    border-radius: 50%;
+    @include flexAbsoluteCenter;
+    color: #fff;
+    font-size: 28px;
+    line-height: 2.3;
+    transition: all ease 0.5s;
+    &:hover{
+      transform: rotate(45deg);
+    }
+    &:active{
+      transform: scale(0.5);
+    }
+  }
+
 }

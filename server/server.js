@@ -2,11 +2,14 @@ import app from './app';
 const server =require('http').Server(app);
 const io = require('socket.io')(server);
 
-//MongolDB 
+//MongolDB
 import mongoose from 'mongoose';
 mongoose.Promise= global.Promise;
 import {PORT,URI} from './config';
 
+io.on('connection',(socket)=>{
+  console.log(`New socket connected ${socket.id}`);
+});
 
 mongoose.connect(URI,{useMongoClient:true}).
   then(()=>{

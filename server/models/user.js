@@ -6,12 +6,19 @@ import moment from 'moment';
 
 const UserSchema=new Schema({
   first_name:{type:String, required:true},
+
   last_name:{type:String, required:true},
+
   email:{type:String, unique:true, required:true},
+
   password:{type:String, required:true},
+
   created_at:{type:String, default:moment().format()},
+
   posts:[{type:Schema.ObjectId,ref:'Post'}],
+
   friends:[{type:Schema.ObjectId,ref:'User'}]
+
 });
 
 
@@ -28,7 +35,9 @@ UserSchema.pre('save',function (next) {
 
       bcrypt.hash(user.password,salt,(err,hash)=>{
         if(err) return next(err);
+
         user.password=hash;
+
         next();
       });
 

@@ -1,0 +1,253 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "untitled-font-1";
+  src:url("./fonts/untitled-font-1.eot");
+  src:url("./fonts/untitled-font-1.eot?#iefix") format("embedded-opentype"),
+    url("./fonts/untitled-font-1.woff") format("woff"),
+    url("./fonts/untitled-font-1.ttf") format("truetype"),
+    url("./fonts/untitled-font-1.svg#untitled-font-1") format("svg");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+[data-icon]:before {
+  font-family: "untitled-font-1" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: "untitled-font-1" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-bubble:before {
+  content: "\61";
+}
+.icon-camera:before {
+  content: "\62";
+}
+.icon-clip:before {
+  content: "\63";
+}
+.icon-bulb:before {
+  content: "\64";
+}
+.icon-cloud:before {
+  content: "\65";
+}
+.icon-eye:before {
+  content: "\66";
+}
+.icon-heart:before {
+  content: "\67";
+}
+.icon-like:before {
+  content: "\68";
+}
+.icon-location:before {
+  content: "\69";
+}
+.icon-lock:before {
+  content: "\6a";
+}
+.icon-lab:before {
+  content: "\6b";
+}
+.icon-paperplane:before {
+  content: "\6c";
+}
+.icon-pen:before {
+  content: "\6d";
+}
+.icon-photo:before {
+  content: "\6e";
+}
+.icon-search:before {
+  content: "\6f";
+}
+.icon-world:before {
+  content: "\72";
+}
+.icon-user:before {
+  content: "\74";
+}
+.icon-world:before {
+  content: "\58";
+}
+.icon-vallet:before {
+  content: "\59";
+}
+.icon-params:before {
+  content: "\5a";
+}
+.icon-bulb:before {
+  content: "\30";
+}
+.icon-cloud:before {
+  content: "\31";
+}
+.icon-note:before {
+  content: "\32";
+}
+.icon-mail:before {
+  content: "\33";
+}
+.icon-megaphone:before {
+  content: "\34";
+}
+.icon-lock:before {
+  content: "\35";
+}
+.icon-location:before {
+  content: "\36";
+}
+.icon-like:before {
+  content: "\37";
+}
+.icon-lab:before {
+  content: "\38";
+}
+.icon-key:before {
+  content: "\39";
+}
+.icon-search:before {
+  content: "\21";
+}
+.icon-settings:before {
+  content: "\22";
+}
+.icon-photo:before {
+  content: "\23";
+}
+.icon-news:before {
+  content: "\24";
+}
+.icon-envelope-o:before {
+  content: "\70";
+}
+.icon-poop:before {
+  content: "\41";
+}
+.icon-pee:before {
+  content: "\42";
+}
+.icon-hookah:before {
+  content: "\43";
+}
+.icon-star:before {
+  content: "\71";
+}
+.icon-star-o:before {
+  content: "\73";
+}
+.icon-thumbs-down:before {
+  content: "\76";
+}
+.icon-thumbs-o-down:before {
+  content: "\77";
+}
+.icon-thumbs-o-up:before {
+  content: "\78";
+}
+.icon-heart-2:before {
+  content: "\79";
+}
+.icon-heart-o:before {
+  content: "\7a";
+}
+.icon-hand-lizard-o:before {
+  content: "\3b";
+}
+.icon-hand-peace-o:before {
+  content: "\3c";
+}
+.icon-spinner:before {
+  content: "\3d";
+}
+.icon-delete-garbage-streamline:before {
+  content: "\75";
+}
+.icon-trash:before {
+  content: "\44";
+}
+.icon-tag:before {
+  content: "\45";
+}
+.icon-fire:before {
+  content: "\46";
+}
+.icon-calendar:before {
+  content: "\47";
+}
+.icon-star-1:before {
+  content: "\48";
+}
+.icon-angle-down:before {
+  content: "\49";
+}
+.icon-angle-left:before {
+  content: "\4a";
+}
+.icon-angle-right:before {
+  content: "\4b";
+}
+.icon-angle-up:before {
+  content: "\4c";
+}
+.icon-bell-o:before {
+  content: "\4d";
+}
+.icon-bell:before {
+  content: "\4e";
+}
+.icon-bell-slash:before {
+  content: "\4f";
+}
+.icon-bell-slash-o:before {
+  content: "\50";
+}
+.icon-camera-retro:before {
+  content: "\51";
+}
+.icon-camera-1:before {
+  content: "\52";
+}
+.icon-comment:before {
+  content: "\53";
+}
+.icon-comment-o:before {
+  content: "\54";
+}
+.icon-commenting:before {
+  content: "\55";
+}
+.icon-commenting-o:before {
+  content: "\56";
+}
+.icon-lemon-o:before {
+  content: "\57";
+}
+.icon-rocket:before {
+  content: "\25";
+}
+.icon-times:before {
+  content: "\26";
+}

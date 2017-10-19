@@ -5,12 +5,14 @@ import cors from 'cors';
 // Routes
 import API from './routes/api';
 import AUTH from './routes/auth';
+import multer from 'multer';
+
+
 
 //Middlewares
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.use(cors());
-
 //localhost:800/api
 app.use('/api',API);
 //localhost:800/auth
