@@ -1,7 +1,8 @@
 import User from '../models/user';
 import Post from '../models/post';
+import Profile from '../models/profile';
+
 import {createToken} from '../../services/index';
-<<<<<<< HEAD
 import fs from 'fs';
 
 
@@ -29,39 +30,47 @@ export const uploadController=(req,res,next)=>{
   res.status(200).send({test:1});
 
 }
-=======
+
 // import {User,Post} from '../models/models';
->>>>>>> ca2c4304ac2911810790dd0b10ce53bddf3f8840
 
 export const testController=(req,res)=>{
 
-  // let p=new Post({
-  //   description:'description 1',
-  //   img:"htttp://www.lorempixel/500/600",
-  //   _creator:'59b0745447201c026d350198',
-  // });
-  // p.save((e,p)=>{
-  //   if(e) res.status(500).send('Error');
-  //   res.status(200).send(p);
-  // });
+  Profile.findOne({user:'59e905822716ba458d2764c9'})
+  .populate('user')
+  .exec((e,u)=>{
+    res.send(u);
+  })
   //
-  // User.findOne({_id:'59b0745447201c026d350198'},(err,user)=>{
-  //   res.status(200).send(user)
-  //
-  //   // user.friends.push('59dfa5c72948462999da0fa9');
-  //   // user.friends.pop(1);
-  //
-  //   user.save((err,u)=>{
-  //     if(err) res.status(500).send(err);
-  //     res.status(200).send(u);
-  //   });
+  // Profile.find()
+  // .populate({
+  //   path:'user',
+  //   match:{
+  //     email:'4811095288ic@gmail.com'
+  //   }
+  // })
+  // .exec((e,u)=>{
+  //   // u=u.filter((u)=>u.user != null);
+  //   let user=u.filter(u=>u.user !=null)[0];
+  //   if(e) return res.status(500).send(`Server error ${e}`);
+  //   if(!user) return res.status(403).send({text:'Email doesn\'t match any account'});
+  //   if(user.user.comparePassword('demonio0')){
+  //     let {_id,first_name,last_name,email}=user.user;
+  //       res.status(200).send({
+  //         user:{
+  //           _id,
+  //           first_name,
+  //           last_name,
+  //           email,
+  //           username:user.username,
+  //           profile_img:user.profile_img
+  //         }
+  //     });
+  //   }else res.send('NO HAY');
   // });
-  // PRESENTAR
-
-  User.find({},(e,u)=>{
-    if(e) res.status(500).send(e);
-    res.status(200).send(u);
-  });
+  // Profile.find({},(e,u)=>{
+  //   if(e) res.status(500).send(e);
+  //   res.status(200).send(u);
+  // });
   //REMOVE
   // User.find({},(e,u)=>{
   //   if(e) res.status(500).send(e)
@@ -77,25 +86,34 @@ export const testController=(req,res)=>{
 }
 
 
+//GET USER
 export const getCurrentUser=(req,res)=>{
   const id= req.params.id
-  User.findById(id,(e,u)=>{
-    if(e) res.status(500).send('Server error');
-    if(!u) res.status(400).send('Error your user not exist');
-    let {first_name,last_name,email,_id} = u;
-    res.status(200).send({user:{_id,first_name,last_name,email}})
+
+  Profile.findOne({user:id}).populate('user').exec((e,u)=>{
+      if(e) res.status(500).send('Server error');
+      if(!u) res.status(400).send('Error your user not exist');
+      let {first_name,last_name,email,_id} = u.user,
+      {profile_img,username}=u;
+      res.status(200).send({user:{username,profile_img,_id,first_name,last_name,email}})
+
   });
+  // User.findById(id,(e,u)=>{
+  //   if(e) res.status(500).send('Server error');
+  //   if(!u) res.status(400).send('Error your user not exist');
+  //   let {first_name,last_name,email,_id} = u;
+  //   res.status(200).send({user:{_id,first_name,last_name,email}})
+  // });
 };
+///
+
 
 export const createUser=(req,res)=>{
   let {first_name,last_name,email,password,confirmPassword} = req.body;
 
   User.findOne({'email':email},(err,u)=>{
     //Server error
-    if(err){
-      console.log("HOLA");
-      return res.status(500).send(err);
-    }
+    if(err) return res.status(500).send(err);
 
     // if user exist send error message
     if(u) return res.status(400).send(`User already exists`);
@@ -106,15 +124,19 @@ export const createUser=(req,res)=>{
         first_name,
         last_name,
       });
+      let profile=new Profile({
+        username:user.first_name.replace(/\s/g,''),
+        user:user._id
+      });
 
+      profile.save(err=>{
+        if(err) return res.status(500).send(err);
+      });
       user.save(err=>{
         if(err) return res.status(500).send(err);
-<<<<<<< HEAD
         let {first_name,last_name,email,_id} = user;
-        return res.status(200).send({user:{_id,first_name,last_name,email},token:createToken(user)});
-=======
-        return res.status(200).send({token:createToken(user)});
->>>>>>> ca2c4304ac2911810790dd0b10ce53bddf3f8840
+        let {username,profile_img}=profile;
+        return res.status(200).send({user:{_id,username,profile_img,first_name,last_name,email},token:createToken(user)});
       });
     }
 

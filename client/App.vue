@@ -21,9 +21,7 @@
   @import "style/forms";
   @import "style/flash";
   @import "style/header";
-<<<<<<< HEAD
 
-=======
   //Basic reset
   *,  *::after,*::before{
       box-sizing: border-box;
@@ -43,7 +41,6 @@
     display: flex;
     justify-content: space-between;
   }
->>>>>>> ca2c4304ac2911810790dd0b10ce53bddf3f8840
 
 
   /* git@github.com:Pitu2-Developers/Photograph.git */

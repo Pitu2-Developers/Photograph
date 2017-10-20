@@ -1,7 +1,5 @@
-<<<<<<< HEAD
 @import './post';
 $footer-h:2rem;
-
 //Basic reset
 *,  *::after,*::before{
     box-sizing: border-box;
@@ -23,6 +21,7 @@ body{
     width: 90%;
   }
 }
+
 .container--header{
   display: flex;
   justify-content: space-between;
@@ -30,8 +29,8 @@ body{
 
 a{
   text-decoration: none;
-
 }
+
 button{
   outline: none;
   border:none;
@@ -53,13 +52,9 @@ img{
   margin: auto;
   display: block;
 }
-=======
-$footer-h:2rem;
-a{
-  text-decoration: none;
->>>>>>> ca2c4304ac2911810790dd0b10ce53bddf3f8840
 
-}
+
+
 .center{
   display: flex;
   justify-content: center;
@@ -72,7 +67,6 @@ a{
   // background: green;
 }
 
-<<<<<<< HEAD
 .container--fixed{
   position: fixed;
   left: 0;
@@ -94,13 +88,6 @@ a{
 }
 
 
-.footer{
-  height: $footer-h;
-  display: flex;
-  p{
-    font-size: 11px;
-    color: gray;
-=======
 
 .footer{
   height: $footer-h;
@@ -176,7 +163,7 @@ a{
     }
 
   }
-  
+
   .edit-icon{
     align-self: flex-end;
     border-radius: 100px;
@@ -246,7 +233,7 @@ a{
   padding: 20px 0;
   text-align: center;
   width: 100%;
-  
+
   display: flex;
 }
 
@@ -259,19 +246,18 @@ a{
     height: 300px;
     margin-bottom: 10px;
     width: 400px;
-  
+
     align-content: center;
     align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    
+
     img{
       border-radius: 5px;
       height: 80%;
       width: 80%;
     }
->>>>>>> ca2c4304ac2911810790dd0b10ce53bddf3f8840
   }
 }
 

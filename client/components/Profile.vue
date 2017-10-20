@@ -1,17 +1,8 @@
 <template >
-<<<<<<< HEAD
-  <h1>PROFILE</h1>
-</template>
-
-<script>
-export default {
-}
-</script>
-=======
 	<section class="profile-box">
 		<div class="profile-info">
 			<ProfileInfo></ProfileInfo>
-			
+
 			<div class="type-layout">
 				<img v-bind:class="{'option-selected': !showSome}" @click="show_one()" src="/client/assets/list-unordered.svg">
 				<img v-bind:class="{'option-selected': !showByOne}" @click="show_some()" src="/client/assets/kebab-horizontal.svg">
@@ -48,5 +39,3 @@ export default {
 	}
 }
 </script>
-
->>>>>>> ca2c4304ac2911810790dd0b10ce53bddf3f8840

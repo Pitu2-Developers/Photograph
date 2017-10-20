@@ -1,6 +1,5 @@
 <template>
   <div >
-<<<<<<< HEAD
     <!-- <h1>WELCOME {{name}}</h1> -->
     <img class="preview-image" :src="image">
     <section class="post-container">
@@ -10,8 +9,8 @@
       <article class="post">
         <header class="post__header">
           <div class="post__container">
-            <img class="post__image-profile" src="http://lorempixel.com/600/600" alt="">
-            <p class="post__name">{{name}}</p>
+            <img class="post__image-profile" :src="profile_img" alt="">
+            <p class="post__name">{{username}}</p>
           </div>
           <i class="icon-angle-down"></i>
         </header>
@@ -24,10 +23,10 @@
             <i class="post__icon icon-bubble"></i>
           </div>
           <div class="post__commentsBox">
-            <p class="post__name">{{name}} <span class="post__span">Lorem ipsum dolor sit.</span></p>
-            <p class="post__name">{{name}} <span class="post__span">Lorem ipsum dolor sit.</span></p>
-            <p class="post__name">{{name}} <span class="post__span">Lorem ipsum dolor sit.</span></p>
-            <p class="post__name">{{name}} <span class="post__span">Lorem ipsum dolor sit.</span></p>
+            <p class="post__name">{{username}} <span class="post__span">Lorem ipsum dolor sit.</span></p>
+            <p class="post__name">{{username}} <span class="post__span">Lorem ipsum dolor sit.</span></p>
+            <p class="post__name">{{username}} <span class="post__span">Lorem ipsum dolor sit.</span></p>
+            <p class="post__name">{{username}} <span class="post__span">Lorem ipsum dolor sit.</span></p>
 
           </div>
           <div class="post__send">
@@ -39,14 +38,10 @@
       </article>
     </section>
     <ImageButton @myEvent2="getImage"></ImageButton>
-=======
-    <h1>WELCOME {{name}}</h1>
->>>>>>> ca2c4304ac2911810790dd0b10ce53bddf3f8840
   </div>
 </template>
 
 <script>
-<<<<<<< HEAD
   import axios from 'axios';
   import ImageButton from './ImageButton.vue';
   import {decodeToken} from '../../services';
@@ -54,13 +49,14 @@
     components:{ImageButton},
     data(){
       return{
-        name:this.$store.state.user.first_name,
+        username:this.$store.state.user.username,
+        profile_img:this.$store.state.user.profile_img,
         image:'',
         file:null
       }
     },
     created(){
-      if(!this.name){
+      if(!this.username){
         decodeToken(localStorage.getItem('token'))
         .then(response=>{
 
@@ -78,23 +74,11 @@
           console.log(e);
         });
       }
-        // var socket=io.connect('http://localhost:8000',{'forceNew':true});
-
-
-=======
-
-  export default {
-    data(){
-      return{
-        name:this.$store.state.user.first_name
-      }
->>>>>>> ca2c4304ac2911810790dd0b10ce53bddf3f8840
     },
     methods:{
       logout(){
         this.$store.dispatch('logout')
         location.reload();
-<<<<<<< HEAD
       },
       getImage(e){
         console.log(e);
@@ -125,9 +109,7 @@
     computed:{
       getPost(){
 
-=======
->>>>>>> ca2c4304ac2911810790dd0b10ce53bddf3f8840
       }
     }
-  }
+}
 </script>

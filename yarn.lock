@@ -1086,6 +1086,10 @@ capture-stack-trace@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/capture-stack-trace/-/capture-stack-trace-1.0.0.tgz#4a6fa07399c26bba47f0b2496b4d0fb408c5550d"
 
+cartoon-avatar@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/cartoon-avatar/-/cartoon-avatar-1.0.2.tgz#4684e7a4d8438f79f6e62cd168b0a38492c009e6"
+
 caseless@~0.12.0:
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"

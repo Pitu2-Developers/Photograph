@@ -7,12 +7,12 @@
 		</router-link>
 
 		<figure>
-			<img src="https://raw.githubusercontent.com/Ashwinvalento/cartoon-avatar/master/lib/images/female/68.png">
-			<figcaption>@Nombre_de_usuario</figcaption>
+			<img :src="profile_img">
+			<figcaption>@{{username}}</figcaption>
 		</figure>
 
 		<p>{{name}} {{last_name}}</p>
-		
+
 		<pre>
 			Biografia
 		</pre>
@@ -39,7 +39,9 @@ export default {
 	data () {
 		return{
 			name: this.$store.state.user.first_name,
-			last_name: this.$store.state.user.last_name
+			last_name: this.$store.state.user.last_name,
+			username:this.$store.state.user.username,
+			profile_img:this.$store.state.user.profile_img
 		}
 	}
 }

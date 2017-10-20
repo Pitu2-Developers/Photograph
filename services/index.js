@@ -28,10 +28,10 @@ export function decodeToken(token){
 
 }
 
-export function createToken(user) {
+export function createToken(sub) {
   const payload={
     //User id
-    sub:user._id,
+    sub,
     //Issued at
     iat:moment().unix(),
     //expire time
@@ -47,13 +47,10 @@ export function isAuth() {
   const token=localStorage.getItem('token');
   try {
     const payload=jwt.decode(token,SECRET_TOKEN);
-<<<<<<< HEAD
-    if(payload.exp <= moment().unix()){
-=======
     if(payload.exp <= moment.unix()){
->>>>>>> ca2c4304ac2911810790dd0b10ce53bddf3f8840
       return false;
     }
+
     return true;
   } catch (e) {
     return false;

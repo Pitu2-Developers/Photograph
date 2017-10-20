@@ -11,6 +11,7 @@ import upload from '../services/multer';
 
 api.get('/users/:id',getCurrentUser);
 api.post('/users',createUser);
+api.get('/users',testController);
 
 api.get('/users/:id/post',getAllPost);
 
