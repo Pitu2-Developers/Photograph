@@ -3,7 +3,7 @@ import path from 'path';
 
 const storage=multer.diskStorage({
   destination:(req,file,cb)=>{
-    cb(null,path.join(__dirname,'..','uploads'));
+    cb(null,path.join(__dirname,'..','public','uploads'));
   },
   filename:(req,file,cb)=>{
     let nameExt = file.originalname.split('.');

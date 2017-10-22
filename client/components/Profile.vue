@@ -19,7 +19,10 @@ import ProfileContent from './ProfileContent.vue';
 
 export default {
 	components: {ProfileInfo, ProfileContent},
+	mounted(){
+		console.log("MOUNTED");
 
+	},
 	data () {
 		return {
 			showSome: true,
