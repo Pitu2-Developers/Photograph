@@ -1,0 +1,70 @@
+.modal{
+  position: fixed;
+  top:0;
+  left: 0;
+  background: rgba(#000,0.4);
+  width: 100%;
+  height: 100vh;
+  @include flexAbsoluteCenter;
+}
+.pmodal{
+  background: #fff;
+  border-radius: 4px;
+  width: 90%;
+  max-width: 600px;
+  .pmodal__header{
+    background: $primary-color;
+    // background: rgba(#fff,.8);
+    padding: 10px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    .pmodal__profile{
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+    }
+    .pmodal__title{
+      // background: red;
+      width: 100%;
+      @include flexAbsoluteCenter;
+    }
+    span{
+      cursor: pointer;
+    }
+  }
+  .pmodal__content{
+    display: flex;
+    padding: 10px;
+    overflow: hidden;
+    .pmodal__caption{
+      // box-sizing: border-box;
+      width: 100%;
+      max-width: 600px;
+      resize: none;
+      height: 120px;
+      outline: none;
+      // outline: 1px solid orange;
+      padding: 10px;
+      border: none;
+
+    }
+    .pmodal__preview{
+      $s:100px;
+      width: $s;
+      height: $s;
+      border-radius: 5px 0 5px 0;
+    }
+  }
+
+  .pmodal__footer{
+    padding:0px 10px 10px 10px;
+    .pmodal__input{
+      width: 100%;
+      padding: 7px;
+      border: none;
+      background: #eee;
+      // color: #fff;
+    }
+  }
+}

@@ -1,9 +1,21 @@
 import User from '../models/user';
 import Post from '../models/post';
 import Profile from '../models/profile';
+import Friendship from '../models/friendship';
 
 import {createToken} from '../../services/index';
 import fs from 'fs';
+
+
+export const testController=(req,res)=>{
+  res.send('OK')
+}
+
+
+export const getByUsername=(req,res)=>{
+  const username=req.params.username;
+
+}
 
 
 export const getAllPosts=(req,res)=>{
@@ -12,7 +24,7 @@ export const getAllPosts=(req,res)=>{
   .populate('posts','-__v')
   .exec((e,p)=>{
     if(e) return res.status(500).send(`Server error ${e}`);
-    return res.status(200).send(p);
+    return res.status(200).send(p.posts);
   });
 };
 
@@ -39,7 +51,7 @@ export const uploadController=(req,res,next)=>{
     });
     console.log(req.body);
     const post=new Post({
-      caption:req.body.caption,
+      caption: req.body.caption,
       img:`http://localhost:8000/uploads/${req.body.user}/${req.file.filename}`,
       _creator:req.body.user
     });
@@ -58,16 +70,6 @@ export const uploadController=(req,res,next)=>{
 }
 
 
-export const testController=(req,res)=>{
-  //59ebdc8b4286f24a073ad6fb
-  //59ebdcd7924b004cb92aa8e7
-  User.findOne()
-  .populate()
-  .exec((e,u)=>{
-    res.send(u);
-  })
-
-}
 
 
 //GET USER

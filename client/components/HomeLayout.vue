@@ -11,7 +11,19 @@
 <script>
   import Header from './Header.vue';
 export default {
-  components:{Header}
+  components:{Header},
+  data(){
+    return{
+      scrolled:false
+    }
+  },
+  methods:{
+    handleScroll(e){
+      console.log("SCROLL");
+      this.scrolled=window.scrollY>0
+      console.log(this.scrolled);
+    }
+  }
 }
 </script>
 

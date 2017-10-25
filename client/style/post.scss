@@ -2,6 +2,7 @@
   @include flexHorizontalCenter;
   // background: blue;
   width: 80%;
+  max-width: 600px;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -15,17 +16,15 @@
   }
 }
 .post{
-  // background: red;
   display: block;
   margin-top: 1rem;
   margin-bottom: 50px;
   width: 50%;
   min-width: 600px;
-  max-width: 400px;
+  // max-width: 400px;
   &__container{
     display: flex;
     align-items: center;
-
   }
   &__header{
     border-radius: 5px 5px 0px 0px;
@@ -41,6 +40,13 @@
       cursor: pointer;
       // padding: 10px;
     }
+  }
+
+  &__time{
+    display: block;
+    color: #aaa;
+    // background: red;
+    font-size: 11px;
   }
 
   &__name{
@@ -62,7 +68,7 @@
     height: 600px;
     @media screen and (max-width:35em){
       // min-height:0;
-      height: 400px;
+      height: 350px;
     }
     img{
       height: 100%;
