@@ -246,6 +246,17 @@ img{
   transition-duration: 1s;
 }
 
+.editing-avatar-enter-active {
+  transition: all .5s ease-out;
+}
+.editing-avatar-leave-active {
+  transition: all .2s linear;
+}
+.editing-avatar-enter, .editing-avatar-leave-to{
+  transform: translateX(300px);
+  opacity: 0;
+}
+
 /*
 .edit-profile-picture{
   border: 1px solid black;
