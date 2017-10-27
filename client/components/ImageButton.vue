@@ -1,5 +1,11 @@
 <template lang="html">
-  <div class="container--fixed" v-if="image==''">
+  <div class="container--fixed">
+    <div class="container end">
+      <label class="input__file" for="file"><i class="input__file--icon icon-camera"></i></label>
+      <input  id="file" type="file" @change="onFileChange">
+    </div>
+  </div>
+  <!-- <div class="container--fixed" v-if="image==''">
     <div class="container end">
       <label class="input__file" for="file"><i class="input__file--icon icon-camera"></i></label>
       <input  id="file" type="file" @change="onFileChange">
@@ -9,7 +15,7 @@
     <div class="container end">
       <label @click="removeImage()" class="input__file" for="file"><i class="input__file--icon icon-trash"></i></label>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script>
@@ -21,9 +27,6 @@ export default {
     }
   },
   methods:{
-    emitMyEvent(){
-
-    },
     onFileChange(e){
       let file = e.target.files;
       this.fil=file[0];

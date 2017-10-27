@@ -1,4 +1,4 @@
-import {LOGIN,LOGIN_SUCCESS,LOGIN_ERROR,LOGOUT,ADD_USER} from './constants';
+import {LOGIN,LOGIN_SUCCESS,LOGIN_ERROR,LOGOUT,ADD_USER,ADD_USER_POSTS} from './constants';
 import {initialState} from './store';
 
 export default{
@@ -26,5 +26,9 @@ export default{
     state.user=user;
     location.reload();
   },
+  [ADD_USER_POSTS](state,data){
+    if(data.type===1) state.user.posts=data.posts
+    else state.posts=data.posts
+  }
 
 }

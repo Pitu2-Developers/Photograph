@@ -3,7 +3,10 @@
     <header class="post__header">
       <div class="post__container">
         <img class="post__image-profile" :src="profile_img" alt="">
-        <p class="post__name">{{username}}</p>
+        <div>
+          <p class="post__name">{{username}}</p>
+          <span class="post__time">24 min</span>
+        </div>
       </div>
       <i class="icon-angle-down"></i>
     </header>

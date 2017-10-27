@@ -1,5 +1,10 @@
 
-import {LOGIN,LOGIN_SUCCESS,LOGIN_ERROR,LOGOUT,ADD_USER,UPLOAD_IMAGE,UPLOAD_IMAGE_SUCCESS,UPLOAD_IMAGE_ERROR} from './constants';
+import {
+  LOGIN,LOGIN_SUCCESS,LOGIN_ERROR
+  ,LOGOUT,ADD_USER,UPLOAD_IMAGE,
+  UPLOAD_IMAGE_SUCCESS,UPLOAD_IMAGE_ERROR,
+  ADD_USER_POSTS} from './constants';
+
 import axios from 'axios';
 import qs from 'querystring';
 import {decodeToken} from '../../services';
@@ -66,17 +71,23 @@ export default{
     upload({commit},data){
       const URL=`${BASE_URL}/api/photos/upload`;
       commit(UPLOAD_IMAGE)
-      axios.post(URL,data)
+      return axios.post(URL,data)
       .then(response=>{
-        console.log(response);
-        commit(UPLOAD_IMAGE_SUCCESS)
       })
       .catch(e=>{
         console.log(e);
-        commit(UPLOAD_IMAGE_ERROR)
       });
     },
-    fetch({commit},url){
-      
+    fetch({commit},data){
+      const URL=`${BASE_URL}${data.url}`;
+      return axios.get(URL)
+      .then(response=>{
+        console.log("fetch");
+        console.log(response.data);
+         commit(ADD_USER_POSTS,{posts:response.data,type:data.type});
+      })
+      .catch(err=>{
+        return Promise.reject(err);
+      })
     }
 }

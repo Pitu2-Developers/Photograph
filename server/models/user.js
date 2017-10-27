@@ -17,7 +17,10 @@ const UserSchema=new Schema({
 
   posts:[{type:Schema.ObjectId,ref:'Post'}],
 
-  followers:[{type:Schema.ObjectId,ref:'User'}]
+  followers:[{type:Schema.ObjectId,ref:'Friendship'}],
+  following:[{type:Schema.ObjectId,ref:'Friendship'}],
+
+  isActive:{type:Boolean, default:false}
 
   // posts:[{type:Schema.ObjectId,ref:'Post'}],
   // friends:[{type:Schema.ObjectId,ref:'User'}]

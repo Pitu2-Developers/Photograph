@@ -5,7 +5,8 @@ import avatar from 'cartoon-avatar';
 const ProfileSchema=new Schema({
   username:{type:String, required:true, unique:true},
   profile_img:{type:String},
-  user:{type:Schema.ObjectId,ref:'User'}
+  user:{type:Schema.ObjectId,ref:'User',required:true},
+  isPrivate:{type:Boolean,default:false}
 });
 
 ProfileSchema.pre('save',function(next){
