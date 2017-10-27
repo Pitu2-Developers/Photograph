@@ -12,7 +12,7 @@
 					<button v-show="edit_picture" @click="editing_enabled()" class="button">Change Pincture!</button>
 				</div>
 				
-				<ProfileEditPhoto v-show="edit_picture" :class="{'edit-profile-picture-active': edit_picture}"></ProfileEditPhoto>
+				<ProfileEditPhoto v-show="edit_picture" class="avatar-pictures"></ProfileEditPhoto>
 			</div>
 			
 			<form class="form-profile-edit">

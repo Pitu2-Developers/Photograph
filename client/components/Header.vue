@@ -31,7 +31,8 @@ export default {
   data(){
     return{
       isScroll:false,
-      isShow:false
+      isShow:false,
+      username: this.$store.state.user.username
     }
   },
   methods:{
