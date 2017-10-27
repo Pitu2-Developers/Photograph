@@ -1,9 +1,16 @@
 <template >
 	<section class="profile-box">
+
+		<!--
 		<router-link to="/profile/edit" class="edit-icon">
 			<figure>
 				<img src="/client/assets/settings.svg">
 			</figure>
+		</router-link>
+		-->
+
+		<router-link to="/profile/edit" class="edit-icon">
+			<div class="icon icon-params"></div>
 		</router-link>
 
 		<figure>
@@ -19,7 +26,7 @@
 
 		<div class="more-about-user">
 			<div>
-				<p>1</p>
+				<p>{{posts.length}}</p>
 				<p>Posts</p>
 			</div>
 			<div>
@@ -41,7 +48,8 @@ export default {
 			name: this.$store.state.user.first_name,
 			last_name: this.$store.state.user.last_name,
 			username:this.$store.state.user.username,
-			profile_img:this.$store.state.user.profile_img
+			profile_img:this.$store.state.user.profile_img,
+			posts: this.$store.state.user.posts
 		}
 	}
 }

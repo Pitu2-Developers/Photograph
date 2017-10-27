@@ -1,11 +1,17 @@
-<template >
+<template>
 	<section class="profile-box">
 		<div class="profile-info">
 			<ProfileInfo></ProfileInfo>
+			
+			<div class="layout">
+				<p>Lista</p>
 
-			<div class="type-layout">
-				<img v-bind:class="{'option-selected': !showSome}" @click="show_one()" src="/client/assets/list-unordered.svg">
-				<img v-bind:class="{'option-selected': !showByOne}" @click="show_some()" src="/client/assets/kebab-horizontal.svg">
+				<div class="layout-icon">
+					<div v-show="!showSome" @click="show_some()" class="icon icon-toggle-off"></div>
+					<div v-show="!showByOne" @click="show_one()" class="icon icon-toggle-on"></div>
+				</div>
+
+				<p>Cuadricula</p>
 			</div>
 		</div>
 
