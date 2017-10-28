@@ -25,18 +25,16 @@ const routes= [
 					name:isAuth() ? 'home':'login',
 					component: isAuth() ? Home : Index,
 					meta:{requiresAuth: isAuth() }
-// =======
-// 				path:'',
-// 				name:isAuth() ? 'home':'login',
-// 				component: isAuth() ? Home : Index,
-// 				meta:{requiresAuth: isAuth() }
-// >>>>>>> ca2c4304ac2911810790dd0b10ce53bddf3f8840
 			},
 			{
-				path:'profile',
+				path:'/:username',
 				name:'profile',
 				component: Profile,
-				meta:{ requiresAuth:true}
+				meta:{ requiresAuth:true},
+				beforeEnter:(to,form,next)=>{
+					console.log("S");
+					next();
+				}
 			},
 			{
 				path: 'profile/edit',

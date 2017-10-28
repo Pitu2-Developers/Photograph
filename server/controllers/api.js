@@ -5,16 +5,99 @@ import Friendship from '../models/friendship';
 
 import {createToken} from '../../services/index';
 import fs from 'fs';
+import mongoose from 'mongoose';
+
+export const followController=(req,res)=>{
+  console.log(req.body);
+  User.findOne({_id:req.body._user},(e,u)=>{
+    if(e) return res.status(500).send('Server error');
+
+    if(!u.following.includes(req.body.user)){
+      let friendship=new Friendship({
+        user:req.body.user
+      })
+      console.log(":D");
+    }else{
+      console.log(":()");
+    }
+    // friendship.save((e)=>{
+    //   if(e) return res.status(500).send('Server error');
+    //   return res.status(200).send('Requested')
+    // });
+
+
+  })
+};
+
+export const updateUser=(req,res)=>{
+  let user=req.params.id
+  Profile.findOne({user})
+  .populate('user')
+  .exec((e,u)=>{
+    if(!e) return res.status(500).send('Server error');
+    if(!u) return res.status(403).send('User doesn\'t exist');
+    else{
+      let {first_name,last_name,email,username}=req.body;
+
+      u.username=username != u.username && username != ''? username:u.username;
+      u.user.first_name=first_name != u.user.first_name && first_name!=''? first_name:u.user.first_name;
+      u.user.last_name=last_name != u.user.last_name && last_name!=''? last_name:u.user.last_name;
+      u.user.email= email != u.user.email && email!=''? email:u.user.email;
+
+      u.save();
+      u.user.save();
+      return res.status(200).send('Updated successfully');
+    }
+  });
+};
 
 
 export const testController=(req,res)=>{
-  res.send('OK')
+  //59efd054737e72563d4c337e
+  //59efd0bbc741165833f0b192
+
+  //59efd1488263b759f4745f1f
+
+  Profile.find({})
+  .populate({
+    path:'user',
+    populate:{path:'posts'}
+  })
+  .exec((e,u)=>{
+    let a= u[1].user.following.reduce((array,i,index)=>{
+      if(i == '59efd1488263b759f4745f1f'){
+        array.pop(index)
+      }
+      return array
+    },[])
+    console.log(a);
+    return res.send(u)
+  });
+}
+
+export const searchController=(req,res)=>{
+  let username=req.params.username;
+  Profile.find({username:new RegExp(`^${username}`,"i")},' username profile_img')
+  .populate({
+      path:'user',
+      select:'_id'
+
+  })
+  .exec((e,u)=>{
+    res.send(u || 'no users');
+  })
 }
 
 
-export const getByUsername=(req,res)=>{
-  const username=req.params.username;
 
+
+
+export const  getUsers=(req,res)=>{
+  Profile.find()
+  .populate('user')
+  .exec((e,u)=>{
+
+  });
 }
 
 
@@ -70,23 +153,24 @@ export const uploadController=(req,res,next)=>{
 }
 
 
-
-
 //GET USER
 export const getCurrentUser=(req,res)=>{
+  let isValid = require('mongoose').Types.ObjectId.isValid;
   const id= req.params.id
 
-  Profile.findOne({user:id})
+  console.log(`${id}-${isValid(id)}`);
+  Profile.findOne({$or:[{user:isValid(id) ? id:null},{username:id}]})
   .populate({
     path:'user',
     populate:{path:'posts'}
   })
   .exec((e,u)=>{
-      if(e) res.status(500).send('Server error');
-      if(!u) res.status(400).send('Error your user not exist');
-      let {first_name,last_name,email,_id,posts} = u.user,
+      if(e) return res.status(500).send('Server error');
+      if(!u) return res.status(400).send('Error your user not exist');
+      console.log(u.user);
+      let {first_name,last_name,email,_id,posts,following,followers} = u.user,
       {profile_img,username}=u;
-      res.status(200).send({user:{username,profile_img,_id,first_name,last_name,email,posts}})
+      res.status(200).send({user:{following,followers,username,profile_img,_id,first_name,last_name,email,posts}})
 
   });
 };

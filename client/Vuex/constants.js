@@ -13,6 +13,11 @@ export const UPLOAD_IMAGE='UPLOAD_IMAGE';
 export const UPLOAD_IMAGE_SUCCESS='UPLOAD_IMAGE_SUCCESS';
 export const UPLOAD_IMAGE_ERROR='UPLOAD_IMAGE_ERROR';
 
+
+export const FOLLOW='FOLLOW';
+export const FOLLOW_SUCCESS='FOLLOW_SUCCESS';
+export const FOLLOW_ERROR='FOLLOW_ERROR';
+
 export const ADD_USER ='ADD_USER'
 
 export const LOGOUT ='LOGOUT';

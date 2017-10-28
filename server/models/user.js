@@ -17,6 +17,7 @@ const UserSchema=new Schema({
 
   posts:[{type:Schema.ObjectId,ref:'Post'}],
 
+
   followers:[{type:Schema.ObjectId,ref:'Friendship'}],
   following:[{type:Schema.ObjectId,ref:'Friendship'}],
 
@@ -33,7 +34,6 @@ const UserSchema=new Schema({
 UserSchema.pre('save',function (next) {
 
   let user=this;
-
   if(!user.isModified('password')) return next();
 
   bcrypt.genSalt(SALT_FACTOR,(err,salt)=>{
@@ -44,7 +44,7 @@ UserSchema.pre('save',function (next) {
 
         user.password=hash;
 
-        next();
+        return next();
       });
 
   });

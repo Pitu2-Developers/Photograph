@@ -1,15 +1,14 @@
 <template >
 	<section class="profile-box">
 		<div class="profile-info">
-			<ProfileInfo></ProfileInfo>
-
+			<ProfileInfo :user="user"></ProfileInfo>
+			<button v-if="user._id != currentUser " @click="follow()" type="button" name="button">Follow</button>
 			<div class="type-layout">
 				<img v-bind:class="{'option-selected': !showSome}" @click="show_one()" src="/client/assets/list-unordered.svg">
 				<img v-bind:class="{'option-selected': !showByOne}" @click="show_some()" src="/client/assets/kebab-horizontal.svg">
 			</div>
 		</div>
-
-		<ProfileContent class="profile-content" v-bind:class="{'show-some': showSome, 'show-by-one': showByOne}"></ProfileContent>
+		<ProfileContent v-if="isLoading" :posts="user.posts" class="profile-content" :class="{'show-some': showSome, 'show-by-one': showByOne}"></ProfileContent>
 	</section>
 </template>
 
@@ -20,16 +19,20 @@ import ProfileContent from './ProfileContent.vue';
 export default {
 	components: {ProfileInfo, ProfileContent},
 	mounted(){
-		console.log("MOUNTED");
-
+		this.fetchData()
 	},
 	data () {
 		return {
 			showSome: true,
-			showByOne: false
+			showByOne: false,
+			user:{},
+			currentUser:this.$store.state.user.username,
+			isLoading:false
 		}
 	},
-
+	watch:{
+		'$route':'fetchData'
+	},
 	methods: {
 		show_some(){
 			this.showSome = true;
@@ -38,7 +41,27 @@ export default {
 		show_one(){
 			this.showSome = false;
 			this.showByOne = true;
+		},
+		fetchData(){
+			this.$store.dispatch('getUser',this.$route.params.username)
+			.then(response=>{
+				this.user=response
+				this.isLoading=true;
+
+				console.log(this.user);
+			})
+			.catch(err=>{
+				console.log(this.$store.state.user.username);
+				this.$router.push('/')
+
+				// console.log(this.$router.push({path:'home'}));
+			});
 		}
+		,
+		follow(){
+			this.$store.dispatch('follow',{_user:this.$store.state.user._id,user:this.user._id});
+		}
+
 	}
 }
 </script>

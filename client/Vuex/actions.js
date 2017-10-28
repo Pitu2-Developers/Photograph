@@ -3,7 +3,7 @@ import {
   LOGIN,LOGIN_SUCCESS,LOGIN_ERROR
   ,LOGOUT,ADD_USER,UPLOAD_IMAGE,
   UPLOAD_IMAGE_SUCCESS,UPLOAD_IMAGE_ERROR,
-  ADD_USER_POSTS} from './constants';
+  ADD_USER_POSTS,FOLLOW,FOLLOW_SUCCESS,FOLLOW_ERROR} from './constants';
 
 import axios from 'axios';
 import qs from 'querystring';
@@ -89,5 +89,29 @@ export default{
       .catch(err=>{
         return Promise.reject(err);
       })
+    },
+    getUser({commit},data){
+      console.log(data);
+      const URL = `${BASE_URL}/api/users/${data}`
+      return axios.get(URL)
+      .then(response=>{
+        console.log(response);
+        return response.data.user
+      })
+      .catch(err=>{
+        console.log(`ERROR ${err}`);
+        return Promise.reject(err);
+      })
+    },
+    follow({commit},data){
+      const URL = `${BASE_URL}/api/follow`;
+      commit(FOLLOW);
+      axios.post(URL,data).
+      then(response=>{
+        console.log(response.data);
+      })
+      .catch(err=>{
+        console.log(err);
+      });
     }
 }

@@ -11,10 +11,6 @@
 
 <script>
 	export default{
-		data(){
-			return{
-				posts:this.$store.state.user.posts
-			}
-		}
+		props:['posts'],
 	}
 </script>

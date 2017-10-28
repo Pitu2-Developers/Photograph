@@ -1,22 +1,23 @@
 <template>
     <header ref="header"  :class="{'header':true, 'center':true,'fixed':isScroll}">
+
       <div  class="container container--header">
         <div class="header__logo">
           <router-link to="/" class="header__title">Photograp</router-link>
         </div>
+        <SearchBar v-if="showInput"></SearchBar>
         <ul class="header__icons">
           <li class="header__li">
-            <router-link to="/profile" title="Profile" class="icon-user"></router-link>
+            <router-link :to="username" title="Profile" class="icon-user"></router-link>
           </li>
           <li class="header__li">
             <i title="Notifications" class="icon-heart"></i>
           </li>
-          <li class="header__li">
-            <i  title="Explore" class="icon-search"></i>
+          <li class="header__li header__li--search">
+            <i @click="showInput=!showInput"  title="Explore" class="icon-search"></i>
           </li>
           <li @click="isShow=!isShow" class="header__li header__li--sub">
             <i title="More..." class="icon-angle-down"></i>
-            <!-- <i class="arrow-down"></i> -->
             <ul :class="{'arrow':true,'show':isShow}">
               <li><span  @click="logout()">Logout</span></li>
             </ul>
@@ -27,11 +28,16 @@
 </template>
 
 <script>
+import SearchBar from './SearchBar.vue';
 export default {
+  components:{SearchBar},
   data(){
     return{
       isScroll:false,
-      isShow:false
+      isShow:false,
+      showInput:false,
+      username:this.$store.state.user.username,
+
     }
   },
   methods:{
@@ -45,7 +51,6 @@ export default {
   },
   created(){
     console.log("CREATED");
-    // this.$parent.$on('isScrolled',this.setFixed);
   },
   beforeMount(){
     window.addEventListener('scroll',this.handleScroll);

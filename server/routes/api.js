@@ -1,5 +1,5 @@
 import express from 'express';
-import {createUser,testController,uploadController,getCurrentUser,getAllPosts} from '../controllers/api.js';
+import {followController,updateUser,createUser,testController,uploadController,getCurrentUser,getAllPosts,searchController} from '../controllers/api.js';
 const api=express.Router();
 import {isAuth} from '../middlewares';
 import upload from '../services/multer';
@@ -10,8 +10,15 @@ import upload from '../services/multer';
 // localhost:8000/api/users
 
 api.get('/users/:id',getCurrentUser);
+api.post('/users/:id',updateUser);
 api.post('/users',createUser);
-api.get('/users',testController);
+
+api.post('/follow',followController);
+
+
+api.get('/users/search/:username',searchController);
+
+api.get('/test',testController);
 
 api.get('/users/:id/posts',getAllPosts);
 

@@ -7,11 +7,11 @@
 		</router-link>
 
 		<figure>
-			<img :src="profile_img">
-			<figcaption>@{{username}}</figcaption>
+			<img :src="user.profile_img">
+			<figcaption>@{{user.username}}</figcaption>
 		</figure>
 
-		<p>{{name}} {{last_name}}</p>
+		<p>{{user.first_name}} {{user.last_name}}</p>
 
 		<pre>
 			Biografia
@@ -19,15 +19,15 @@
 
 		<div class="more-about-user">
 			<div>
-				<p>1</p>
+				<p>{{user.posts.length}}</p>
 				<p>Posts</p>
 			</div>
 			<div>
-				<p>0</p>
+				<p>{{user.followers.length}}</p>
 				<p>Followers</p>
 			</div>
 			<div>
-				<p>0</p>
+				<p>{{user.following.length}}</p>
 				<p>Following</p>
 			</div>
 		</div>
@@ -36,13 +36,6 @@
 
 <script>
 export default {
-	data () {
-		return{
-			name: this.$store.state.user.first_name,
-			last_name: this.$store.state.user.last_name,
-			username:this.$store.state.user.username,
-			profile_img:this.$store.state.user.profile_img
-		}
-	}
+	props:['user'],
 }
 </script>
