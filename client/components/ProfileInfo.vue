@@ -1,9 +1,8 @@
 <template >
 	<section class="profile-box">
-		<router-link to="/profile/edit" class="edit-icon">
-			<figure>
-				<img src="/client/assets/settings.svg">
-			</figure>
+
+		<router-link v-if="user.username === currentUser" to="/profile/edit" class="edit-icon">
+			<div class="icon icon-params"></div>
 		</router-link>
 
 		<figure>
@@ -17,7 +16,7 @@
 			Biografia
 		</pre>
 
-		<div class="more-about-user">
+		<div  class="more-about-user">
 			<div>
 				<p>{{user.posts.length}}</p>
 				<p>Posts</p>
@@ -37,5 +36,10 @@
 <script>
 export default {
 	props:['user'],
+	data(){
+		return{
+			currentUser:this.$store.state.user.username
+		}
+	}
 }
 </script>

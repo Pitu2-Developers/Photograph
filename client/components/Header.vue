@@ -5,23 +5,26 @@
         <div class="header__logo">
           <router-link to="/" class="header__title">Photograp</router-link>
         </div>
-        <SearchBar v-if="showInput"></SearchBar>
+        <SearchBar ref="search_bar" v-show="showInput"></SearchBar>
+
         <ul class="header__icons">
           <li class="header__li">
             <router-link :to="username" title="Profile" class="icon-user"></router-link>
           </li>
-          <li class="header__li">
-            <i title="Notifications" class="icon-heart"></i>
-          </li>
+
+          <Notifications  ref="notification"  :requests="requests"></Notifications>
+
           <li class="header__li header__li--search">
-            <i @click="showInput=!showInput"  title="Explore" class="icon-search"></i>
+            <i @click="showInput=!showInput" ref="search"  id="search" title="Explore" class="icon-search"></i>
           </li>
-          <li @click="isShow=!isShow" class="header__li header__li--sub">
-            <i title="More..." class="icon-angle-down"></i>
+
+          <li @click="isShow=!isShow"  class="header__li header__li--sub">
+            <i title="More..." ref="logout" class="icon-angle-down"></i>
             <ul :class="{'arrow':true,'show':isShow}">
               <li><span  @click="logout()">Logout</span></li>
             </ul>
           </li>
+
         </ul>
       </div>
     </header>
@@ -29,15 +32,17 @@
 
 <script>
 import SearchBar from './SearchBar.vue';
+import Notifications from './Notifications.vue';
 export default {
-  components:{SearchBar},
+  components:{SearchBar,Notifications},
   data(){
     return{
       isScroll:false,
       isShow:false,
       showInput:false,
       username:this.$store.state.user.username,
-
+      requests:[],
+      showNotifications:true
     }
   },
   methods:{
@@ -47,10 +52,18 @@ export default {
     },
     handleScroll(){
       this.isScroll=window.scrollY>0
+    },
+    clickHandle(e){
+      // console.log(e.target);
+      // console.log(this.$refs.search_bar.$el.children[0]);
+      if((e.target != this.$refs.logout && this.isShow) || (e.target != this.$refs.search && this.showInput) && e.target != this.$refs.search_bar.$el.children[0] ){
+        this.isShow=false;
+        this.showInput=false;
+      }
     }
   },
   created(){
-    console.log("CREATED");
+    window.addEventListener('click',this.clickHandle);
   },
   beforeMount(){
     window.addEventListener('scroll',this.handleScroll);

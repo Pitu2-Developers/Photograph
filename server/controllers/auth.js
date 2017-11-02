@@ -13,7 +13,15 @@ export const SignIn =(req,res)=>{
     match:{
       email
     },
-    populate:{path:'posts', select:'-__v -_creator'}
+    populate:{
+      path:'posts', select:'-__v -_creator',
+    },
+    populate:{
+      path:'following', select:'-__v',
+      match:{
+        isPending:true
+      }
+    }
   })
   .exec((e,u)=>{
     // u=u.filter((u)=>u.user != null);
@@ -21,7 +29,8 @@ export const SignIn =(req,res)=>{
     if(e) return res.status(500).send(`Server error ${e}`);
     if(!user) return res.status(403).send({text:'Email doesn\'t match any account'});
     if(user.user.comparePassword(password)){
-      let {_id,first_name,last_name,email,posts}=user.user;
+      let {_id,first_name,last_name,email,posts,following}=user.user;
+
         res.status(200).send({
           user:{
             _id,
@@ -30,7 +39,9 @@ export const SignIn =(req,res)=>{
             email,
             username:user.username,
             profile_img:user.profile_img,
-            posts
+            gender:user.gender,
+            posts,
+            following
           },
           token:createToken(user.user._id)
       });

@@ -54,11 +54,11 @@ export default{
       decodeToken(localStorage.getItem('token'))
       .then(response=>{
         const URL=`${BASE_URL}/api/users/${response}`;
-        axios.get(URL)
+        return axios.get(URL)
         .then(response=>{
-          console.log(response);
           commit(ADD_USER,response.data.user);
         });
+
       })
       .catch(e=>{
         commit(LOGOUT)
@@ -95,7 +95,6 @@ export default{
       const URL = `${BASE_URL}/api/users/${data}`
       return axios.get(URL)
       .then(response=>{
-        console.log(response);
         return response.data.user
       })
       .catch(err=>{
@@ -109,6 +108,22 @@ export default{
       axios.post(URL,data).
       then(response=>{
         console.log(response.data);
+        commit(FOLLOW_SUCCESS,response.data);
+      })
+      .catch(err=>{
+        commit(FOLLOW_ERROR)
+        console.log(err);
+      });
+    },
+    update({commit,dispatch},data){
+      console.log(data);
+      const URL=`${BASE_URL}/api/users/update/${data._id}`;
+      delete data.posts;
+      console.log(URL);
+      return axios.post(URL,data)
+      .then(response=>{
+        dispatch('reload');
+        return response.data
       })
       .catch(err=>{
         console.log(err);

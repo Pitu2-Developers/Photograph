@@ -299,3 +299,9 @@
 .icon-sliders:before {
   content: "\75";
 }
+.icon-ban:before {
+  content: "\5e";
+}
+.icon-check:before {
+  content: "\60";
+}

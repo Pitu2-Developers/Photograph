@@ -1,9 +1,16 @@
-import {LOGIN,LOGIN_SUCCESS,LOGIN_ERROR,LOGOUT,ADD_USER,ADD_USER_POSTS} from './constants';
+import {LOGIN,LOGIN_SUCCESS,LOGIN_ERROR,LOGOUT,ADD_USER,ADD_USER_POSTS,FOLLOW,FOLLOW_SUCCESS} from './constants';
 import {initialState} from './store';
 
 export default{
   [LOGIN] (state){
     state.isLoading=true;
+  },
+  [FOLLOW](state){
+    state.isLoading=true;
+  },
+  [FOLLOW_SUCCESS](state,data){
+    state.isLoading=false;
+    state.user.following.push(data);
   },
   [LOGIN_SUCCESS] (state){
     state.isLoggedIn=true;

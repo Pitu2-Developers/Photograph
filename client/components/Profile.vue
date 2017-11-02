@@ -1,14 +1,15 @@
-<template >
+<template>
 	<section class="profile-box">
 		<div class="profile-info">
-			<ProfileInfo :user="user"></ProfileInfo>
-			<button v-if="user._id != currentUser " @click="follow()" type="button" name="button">Follow</button>
-			<div class="type-layout">
-				<img v-bind:class="{'option-selected': !showSome}" @click="show_one()" src="/client/assets/list-unordered.svg">
-				<img v-bind:class="{'option-selected': !showByOne}" @click="show_some()" src="/client/assets/kebab-horizontal.svg">
+			<ProfileInfo v-if="!isLoading" :user="user"></ProfileInfo>
+			<button v-if="user.username != currentUser " @click="follow()" type="button" name="button">Follow</button>
+
+			<div class="layout-icon">
+				<div v-show="!showSome" @click="show_some()" class="icon icon-toggle-off"></div>
+				<div v-show="!showByOne" @click="show_one()" class="icon icon-toggle-on"></div>
 			</div>
 		</div>
-		<ProfileContent v-if="isLoading" :posts="user.posts" class="profile-content" :class="{'show-some': showSome, 'show-by-one': showByOne}"></ProfileContent>
+		<ProfileContent v-if="!isLoading" :posts="user.posts" class="profile-content" :class="{'show-some': showSome, 'show-by-one': showByOne}"></ProfileContent>
 	</section>
 </template>
 
@@ -27,7 +28,7 @@ export default {
 			showByOne: false,
 			user:{},
 			currentUser:this.$store.state.user.username,
-			isLoading:false
+			isLoading:true
 		}
 	},
 	watch:{
@@ -43,10 +44,11 @@ export default {
 			this.showByOne = true;
 		},
 		fetchData(){
+			this.isLoading=true;
 			this.$store.dispatch('getUser',this.$route.params.username)
 			.then(response=>{
-				this.user=response
-				this.isLoading=true;
+				this.user=response;
+				this.isLoading=false ;
 
 				console.log(this.user);
 			})

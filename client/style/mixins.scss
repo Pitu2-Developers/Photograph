@@ -8,3 +8,57 @@
   display: flex;
   justify-content: center;
 }
+
+@mixin createArrow($top,$left,$w:60px,$posX:50%,$padd:5px,$center:true) {
+  position: absolute;
+  background: #fff;
+  width: $w;
+  top: $top;
+  left: $left;
+  padding: $padd;
+  border-radius: 2px;
+  display: block;
+  @if($center){
+      transform: translateX(-50%);
+  }
+  &:before{
+    content: "";
+    position: absolute;
+    margin-top: -19px;
+    left: $posX;
+    // transform: translateX(-50%);
+    border: solid 7px transparent;
+    border-right-color: #fff;
+    z-index: 1;
+    transform: translateX(-#{$posX}) rotate(90deg);
+  }
+
+  span{
+    display: block;
+    font-size: 12px;
+    padding: 5px;
+    &:hover{
+      background: rgba(gray,0.2);
+    }
+  }
+
+}
+
+// position: absolute;
+// background: #fff;
+// width: 220px;
+// top:2.6rem;
+// left: 50%;
+// padding: 7px;
+// transform: translateX(-50%);
+// &:before{
+//   content: "";
+//   position: absolute;
+//   margin-top: -19px;
+//   left: 50%;
+//   transform: translateX(-50%);
+//   border: solid 7px transparent;
+//   border-right-color: #fff;
+//   z-index: 1;
+//   transform: rotate(90deg);
+// }

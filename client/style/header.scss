@@ -4,10 +4,8 @@
   background:$primary-color;
   transition: all ease 1s;
 
-  li{
-    list-style: none;
-  }
   &__li{
+    list-style: none;
     margin-right: 1.3rem;
 
     &:last-child{
@@ -115,28 +113,11 @@
     width: 220px;
   }
   &__box{
-    position: absolute;
-    background: #fff;
-    width: 220px;
-    top:2.6rem;
-    left: 50%;
-    padding: 7px;
-    transform: translateX(-50%);
-    &:before{
-      content: "";
-      position: absolute;
-      margin-top: -19px;
-      left: 50%;
-      transform: translateX(-50%);
-      border: solid 7px transparent;
-      border-right-color: #fff;
-      z-index: 1;
-      transform: rotate(90deg);
-    }
+    @include createArrow(2.5rem,50%,220px,50%,7px);
   }
   &__li{
     display: flex;
-    border-bottom: thin solid rgba(gray,0.2);
+    border-bottom: thin solid rgba(gray,0.1);
     padding: 5px;
     color: #000;
 
@@ -144,7 +125,7 @@
       border-bottom: 0;
     }
     &:hover{
-      background: rgba(gray,0.2);
+      background: rgba(gray,0.1);
     }
   }
   &__img{
@@ -169,5 +150,82 @@
     justify-content: center;
     font-size: 14px;
     color:gray;
+  }
+}
+
+.notifications{
+  // background: blue;
+  position: relative;
+  // display: none;
+  &__count{
+    $s:10px;
+    position: absolute;
+    bottom: 18px;
+    left: 14px;
+    background: #fff;
+    border-radius: 50%;
+    width: $s;
+    height: $s;
+    color:gray;
+    padding: 9px;
+    @include flexAbsoluteCenter;
+    font-size: 9px;
+    font-weight: bold;
+  }
+  .notification{
+    padding: 5px;
+    border-bottom: thin solid rgba(gray,0.1);
+    display: flex;
+    align-items: center;
+    &:hover{
+      background: rgba(gray,0.1);
+    }
+    &__con{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      // background: red;
+      width: 100%;
+      i{
+        font-size: 14px;
+        margin-left: 5px;
+        color:gray;
+        &:hover{color: #000;}
+      }
+    }
+    &__icons{
+    }
+    //
+    &__username,&__name{
+      font-size: 12px;
+    }
+    //
+    &__username{
+      font-weight: bold;
+    }
+    //
+    &--header{
+      @include flexAbsoluteCenter;
+      &:hover{
+        background: none;
+      }
+    }
+    //
+    &__title{
+      display: block;
+      font-size: 18px;
+      padding: 5px;
+    }
+    //
+    img{
+      $s:45px;
+      width: $s;
+      height: $s;
+      border-radius: 50%;
+    }
+    //
+    &-box{
+      @include createArrow(2rem,-379%,400px,72%,5px,true);
+    }
   }
 }

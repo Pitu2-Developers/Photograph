@@ -53,74 +53,6 @@
 	align-items: center;
   background: #fff;
 
-  // &__input--search{
-  //   border:none;
-  //   outline: none;
-  //   padding: 3px;
-  //   width: 220px;
-  // }
-
-  // &__search{
-  //   position: relative;
-  //   display: flex;
-  //   align-items: center;
-  //   .search__box{
-  //     position: absolute;
-  //     background: #fff;
-  //     width: 220px;
-  //     top:2.6rem;
-  //     left: 50%;
-  //     padding: 7px;
-  //     transform: translateX(-50%);
-  //     &:before{
-  //       content: "";
-  //       position: absolute;
-  //       margin-top: -19px;
-  //       left: 50%;
-  //       transform: translateX(-50%);
-  //       border: solid 7px transparent;
-  //       border-right-color: #fff;
-  //       z-index: 1;
-  //       transform: rotate(90deg);
-  //     }
-  //     .search__img{
-  //       border-radius: 50%;
-  //       $s:30px;
-  //       width: $s;
-  //       height: $s;
-  //     }
-  //     .search__li{
-  //       display: flex;
-  //       border-bottom: thin solid rgba(gray,0.2);
-  //       padding: 5px;
-  //       &:last-child{
-  //         border-bottom: 0;
-  //       }
-  //       &:hover{
-  //         background: rgba(gray,0.2);
-  //       }
-  //       img{
-  //         margin-right: .4rem
-  //       }
-  //     }
-  //     .search__p{
-  //       font-size: 14px;
-  //     }
-  //
-  //     .search__con{
-  //       display: flex;
-  //       align-items: center;
-  //     }
-  //     .search__span{
-  //       display: block;
-  //       display: flex;
-  //       justify-content: center;
-  //       font-size: 14px;
-  //       color:gray;
-  //     }
-  //   }
-  // }
-
 
 	.title{
 		font-family: 'Satisfy';
@@ -178,6 +110,10 @@
   color: black;
 }
 
+.select{
+  background: #fff;
+  text-align-last: center;
+}
 .input,.submit{
   border-radius: 15px;
   outline: none;

@@ -1,6 +1,6 @@
 <template lang="html">
   <div :class="{'search':true }">
-    <input v-model="userInput" placeholder="Search a friend" class="search__input" type="search">
+    <input  v-model="userInput" placeholder="Search a friend" class="search__input" type="search">
     <div  v-if="users.length >0"  class="search__box" >
       <ul>
         <router-link :to="{name:'profile', params:{username:user.username}}"  v-for="user in users" :key="user._id"  class="search__li">
@@ -21,6 +21,7 @@
 import axios from 'axios';
 export default {
   // props:['username','profile'],
+  name:'search_bar',
   data(){
     return{
         userInput:'',

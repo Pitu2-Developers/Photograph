@@ -10,7 +10,8 @@ import upload from '../services/multer';
 // localhost:8000/api/users
 
 api.get('/users/:id',getCurrentUser);
-api.post('/users/:id',updateUser);
+api.post('/users/update/:id',updateUser);
+
 api.post('/users',createUser);
 
 api.post('/follow',followController);
