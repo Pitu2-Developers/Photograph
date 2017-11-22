@@ -13,15 +13,10 @@ export const initialState={
   isLoading:false,
   user:{
     _id:null,
-    username:null,
-    profile_img:null,
     first_name:null,
     last_name:null,
     email:null,
-    gender:null,
-    posts:[],
-    following:[],
-    followers:[]
+    profile:null
   },
   posts:[]
 }

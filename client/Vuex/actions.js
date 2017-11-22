@@ -1,5 +1,6 @@
 
 import {
+  CANCEL_REQUEST,
   LOGIN,LOGIN_SUCCESS,LOGIN_ERROR
   ,LOGOUT,ADD_USER,UPLOAD_IMAGE,
   UPLOAD_IMAGE_SUCCESS,UPLOAD_IMAGE_ERROR,
@@ -12,7 +13,7 @@ import {decodeToken} from '../../services';
 const BASE_URL='http://localhost:8000';
 
 export default{
-    login({commit}, data){
+    socket_login({commit}, data){
       commit(LOGIN);
       const URL=`${BASE_URL}/auth/photograph`;
       const DATA= qs.stringify(data);
@@ -30,11 +31,9 @@ export default{
 
     },
     signup({commit},data){
-      // console.log(data);
       commit(LOGIN);
       const URL=`${BASE_URL}/api/users`;
       const DATA= qs.stringify(data);
-      console.log("ESTOY AQUI 2");
 
       return axios.post(URL,DATA)
       .then(response=>{
@@ -53,10 +52,11 @@ export default{
     reload({commit},data){
       decodeToken(localStorage.getItem('token'))
       .then(response=>{
+        console.log(response);
         const URL=`${BASE_URL}/api/users/${response}`;
         return axios.get(URL)
         .then(response=>{
-          commit(ADD_USER,response.data.user);
+          commit(ADD_USER,response.data);
         });
 
       })
@@ -91,11 +91,12 @@ export default{
       })
     },
     getUser({commit},data){
-      console.log(data);
       const URL = `${BASE_URL}/api/users/${data}`
       return axios.get(URL)
       .then(response=>{
-        return response.data.user
+        console.log("A");
+        console.log(response.data);
+        return response.data
       })
       .catch(err=>{
         console.log(`ERROR ${err}`);
@@ -105,8 +106,8 @@ export default{
     follow({commit},data){
       const URL = `${BASE_URL}/api/follow`;
       commit(FOLLOW);
-      axios.post(URL,data).
-      then(response=>{
+      axios.post(URL,data)
+      .then(response=>{
         console.log(response.data);
         commit(FOLLOW_SUCCESS,response.data);
       })
@@ -127,6 +128,17 @@ export default{
       })
       .catch(err=>{
         console.log(err);
+      });
+    },
+    cancel({commit},data){
+      console.log(data);
+      const URL = `${BASE_URL}/api/follow/cancel`
+      axios.post(URL,data)
+      .then(response=>{
+        commit(CANCEL_REQUEST,response.data.index)
+      })
+      .catch(err=>{
+
       });
     }
 }

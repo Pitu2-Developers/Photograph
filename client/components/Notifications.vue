@@ -31,7 +31,7 @@
 
 <script>
 export default {
-  props:['requests','showNoti'],
+  props:['requests'],
   data(){
     return{
       img:this.$store.state.user.profile_img,

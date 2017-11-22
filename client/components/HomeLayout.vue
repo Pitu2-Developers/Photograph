@@ -2,7 +2,6 @@
   <div>
     <Header></Header>
     <main class="main">
-    <!-- <main class="main-index"> -->
       <router-view></router-view>
     </main>
   </div>
@@ -19,7 +18,6 @@ export default {
   },
   methods:{
     handleScroll(e){
-      console.log("SCROLL");
       this.scrolled=window.scrollY>0
       console.log(this.scrolled);
     }

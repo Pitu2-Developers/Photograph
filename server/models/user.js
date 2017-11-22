@@ -15,16 +15,9 @@ const UserSchema=new Schema({
 
   created_at:{type:String, default:moment().format()},
 
-  posts:[{type:Schema.ObjectId,ref:'Post'}],
+  profile:{type:Schema.ObjectId,ref:'Profile'},
 
-
-  followers:[{type:Schema.ObjectId,ref:'Friendship'}],
-  following:[{type:Schema.ObjectId,ref:'Friendship'}],
-
-  isActive:{type:Boolean, default:false}
-
-  // posts:[{type:Schema.ObjectId,ref:'Post'}],
-  // friends:[{type:Schema.ObjectId,ref:'User'}]
+  socket_id:{type:String,default:null}
 
 });
 

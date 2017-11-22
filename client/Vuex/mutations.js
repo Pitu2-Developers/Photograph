@@ -1,4 +1,4 @@
-import {LOGIN,LOGIN_SUCCESS,LOGIN_ERROR,LOGOUT,ADD_USER,ADD_USER_POSTS,FOLLOW,FOLLOW_SUCCESS} from './constants';
+import {CANCEL_REQUEST,LOGIN,LOGIN_SUCCESS,LOGIN_ERROR,LOGOUT,ADD_USER,ADD_USER_POSTS,FOLLOW,FOLLOW_SUCCESS} from './constants';
 import {initialState} from './store';
 
 export default{
@@ -10,7 +10,7 @@ export default{
   },
   [FOLLOW_SUCCESS](state,data){
     state.isLoading=false;
-    state.user.following.push(data);
+    state.user.profile.following.push(data);
   },
   [LOGIN_SUCCESS] (state){
     state.isLoggedIn=true;
@@ -26,6 +26,7 @@ export default{
     Object.assign(state,initialState);
     state.isLoggedIn=false;
     location.reload();
+    location.redirect('/')
 
 
   },
@@ -36,6 +37,11 @@ export default{
   [ADD_USER_POSTS](state,data){
     if(data.type===1) state.user.posts=data.posts
     else state.posts=data.posts
+  },
+  [CANCEL_REQUEST](state,data){
+    console.log("DATA");
+    console.log(data);
+    state.user.profile.following.splice(data.index,1);
   }
 
 }

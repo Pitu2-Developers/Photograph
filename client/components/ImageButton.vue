@@ -5,17 +5,7 @@
       <input  id="file" type="file" @change="onFileChange">
     </div>
   </div>
-  <!-- <div class="container--fixed" v-if="image==''">
-    <div class="container end">
-      <label class="input__file" for="file"><i class="input__file--icon icon-camera"></i></label>
-      <input  id="file" type="file" @change="onFileChange">
-    </div>
-  </div>
-  <div class="container--fixed" v-else="">
-    <div class="container end">
-      <label @click="removeImage()" class="input__file" for="file"><i class="input__file--icon icon-trash"></i></label>
-    </div>
-  </div> -->
+
 </template>
 
 <script>

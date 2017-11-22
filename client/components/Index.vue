@@ -28,9 +28,14 @@
 import SignUp from './SignUp.vue';
 import SignIn from './SignIn.vue';
 import Footer from './Footer.vue';
+
 export default {
 	name: 'login',
 	components: { SignUp, SignIn, Footer },
+  created(){
+    console.log("HOLA");
+    document.cookie='index=true';
+  },
 	methods:{
 		show_signup: function() {
 			this.sign_up = true;
@@ -55,6 +60,3 @@ export default {
 	},
 }
 </script>
-
-<style lang="css">
-</style>

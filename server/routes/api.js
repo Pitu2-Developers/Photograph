@@ -1,5 +1,8 @@
 import express from 'express';
-import {followController,updateUser,createUser,testController,uploadController,getCurrentUser,getAllPosts,searchController} from '../controllers/api.js';
+import {
+  cancelFollowController,followController,updateUser,
+  createUser,testController,uploadController,
+  getCurrentUser,getAllPosts,searchController} from '../controllers/api.js';
 const api=express.Router();
 import {isAuth} from '../middlewares';
 import upload from '../services/multer';
@@ -15,7 +18,7 @@ api.post('/users/update/:id',updateUser);
 api.post('/users',createUser);
 
 api.post('/follow',followController);
-
+api.post('/follow/cancel',cancelFollowController);
 
 api.get('/users/search/:username',searchController);
 

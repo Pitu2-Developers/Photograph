@@ -40,10 +40,11 @@ export default {
   methods:{
     handleSubmit(){
       let {email,password}=this.data
-      this.$store.dispatch("login",{email,password} ).
+
+      this.$store.dispatch("socket_login",{email,password} ).
       then(()=>{
+        document.cookie="index=false";
         this.$router.go(this.$router.currentRoute);
-        // location.reload(
       })
       .catch(err =>{
         console.log(err.response);

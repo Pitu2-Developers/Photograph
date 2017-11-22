@@ -3,10 +3,10 @@
     <input  v-model="userInput" placeholder="Search a friend" class="search__input" type="search">
     <div  v-if="users.length >0"  class="search__box" >
       <ul>
-        <router-link :to="{name:'profile', params:{username:user.username}}"  v-for="user in users" :key="user._id"  class="search__li">
-          <img class="search__img" :src="user.profile_img" alt="">
+        <router-link :to="{name:'profile', params:{username:user.profile.username}}"  v-for="user in users" :key="user.profile._id"  class="search__li">
+          <img class="search__img" :src="user.profile.profile_img" alt="">
           <div class="search__con">
-            <p class="search__p">{{user.username}}</p>
+            <p class="search__p">{{user.profile.username}}</p>
           </div>
         </router-link>
       </ul>
@@ -26,7 +26,7 @@ export default {
     return{
         userInput:'',
         users:[],
-        username:this.$store.state.user.username,
+        username:this.$store.state.user.profile.username,
     }
   },
   methods:{
@@ -37,8 +37,8 @@ export default {
       if(e !== '')
         axios.get(`http://localhost:8000/api/users/search/${e}`)
         .then(response=>{
-          this.users=response.data.filter((u)=> u.username!=this.username)
-
+          this.users=response.data.filter((u)=> u.profile.username!=this.username);
+          console.log(this.users);
         })
         .catch(err=>{
           console.log(err);

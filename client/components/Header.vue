@@ -1,6 +1,6 @@
 <template>
     <header ref="header"  :class="{'header':true, 'center':true,'fixed':isScroll}">
-
+      <button  @click="log()" type="button" name="button">A</button>
       <div  class="container container--header">
         <div class="header__logo">
           <router-link to="/" class="header__title">Photograp</router-link>
@@ -40,13 +40,17 @@ export default {
       isScroll:false,
       isShow:false,
       showInput:false,
-      username:this.$store.state.user.username,
+      username:this.$store.state.user.profile.username,
       requests:[],
       showNotifications:true
     }
   },
   methods:{
+    log(){
+      this.$socket.emit('message',{username:this.username});
+    },
     logout(){
+      this.$socket.emit('logout',this.$store.state.user._id);
       this.$store.dispatch('logout')
       location.reload();
     },

@@ -21,3 +21,4 @@ export const FOLLOW_ERROR='FOLLOW_ERROR';
 export const ADD_USER ='ADD_USER'
 
 export const LOGOUT ='LOGOUT';
+export const CANCEL_REQUEST='CANCEL_REQUEST';

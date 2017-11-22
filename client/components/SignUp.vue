@@ -37,6 +37,7 @@
   import qs from 'querystring';
   import axios from 'axios';
   import FlashMessage from './FlashMessage.vue';
+
   export default {
   	name: 'SignUp',
     components:{FlashMessage},

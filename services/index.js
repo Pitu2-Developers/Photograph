@@ -9,13 +9,18 @@ export function decodeToken(token){
   const decode= new Promise( (resolve, reject) => {
       try {
         const payload= jwt.decode(token,SECRET_TOKEN);
+
         if(payload.exp <= moment.unix()){
           reject({
             status:401,
             message:'Expired token'
           });
         }
+
+        console.log("PAyLOAD");
+        console.log(payload);
         resolve(payload.sub);
+
       } catch (e) {
         reject({
           status:500,

@@ -1,13 +1,13 @@
 <template >
 	<section class="profile-box">
 
-		<router-link v-if="user.username === currentUser" to="/profile/edit" class="edit-icon">
+		<router-link v-if="user.profile.username === currentUser" to="/profile/edit" class="edit-icon">
 			<div class="icon icon-params"></div>
 		</router-link>
 
 		<figure>
-			<img :src="user.profile_img">
-			<figcaption>@{{user.username}}</figcaption>
+			<img :src="user.profile.profile_img">
+			<figcaption>@{{user.profile.username}}</figcaption>
 		</figure>
 
 		<p>{{user.first_name}} {{user.last_name}}</p>
@@ -18,15 +18,15 @@
 
 		<div  class="more-about-user">
 			<div>
-				<p>{{user.posts.length}}</p>
+				<p>{{user.profile.posts.length}}</p>
 				<p>Posts</p>
 			</div>
 			<div>
-				<p>{{user.followers.length}}</p>
+				<p>{{user.profile.followers.length}}</p>
 				<p>Followers</p>
 			</div>
 			<div>
-				<p>{{user.following.length}}</p>
+				<p>{{user.profile.following.filter(f=>!f.isPending).length}}</p>
 				<p>Following</p>
 			</div>
 		</div>
@@ -38,7 +38,7 @@ export default {
 	props:['user'],
 	data(){
 		return{
-			currentUser:this.$store.state.user.username
+			currentUser:this.$store.state.user.profile.username
 		}
 	}
 }
