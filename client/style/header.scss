@@ -156,6 +156,7 @@
 .notifications{
   // background: blue;
   position: relative;
+
   // display: none;
   &__count{
     $s:10px;
@@ -173,10 +174,15 @@
     font-weight: bold;
   }
   .notification{
-    padding: 5px;
+    padding:5px;
     border-bottom: thin solid rgba(gray,0.1);
     display: flex;
     align-items: center;
+    // background: red;
+    &:last-child{
+      // background: red;
+      margin-bottom: 0;
+    }
     &:hover{
       background: rgba(gray,0.1);
     }
@@ -218,10 +224,11 @@
     }
     //
     img{
-      $s:45px;
+      $s:35px;
       width: $s;
       height: $s;
       border-radius: 50%;
+      margin-right: 1rem;
     }
     //
     &-box{

@@ -106,10 +106,12 @@ export default{
     follow({commit},data){
       const URL = `${BASE_URL}/api/follow`;
       commit(FOLLOW);
-      axios.post(URL,data)
+      console.log(data);
+      return axios.post(URL,data)
       .then(response=>{
-        console.log(response.data);
-        commit(FOLLOW_SUCCESS,response.data);
+        commit(FOLLOW_SUCCESS,response.data.following);
+        return response.data;
+
       })
       .catch(err=>{
         commit(FOLLOW_ERROR)
@@ -133,11 +135,19 @@ export default{
     cancel({commit},data){
       console.log(data);
       const URL = `${BASE_URL}/api/follow/cancel`
-      axios.post(URL,data)
+      return axios.post(URL,data)
       .then(response=>{
         commit(CANCEL_REQUEST,response.data.index)
       })
       .catch(err=>{
+        alert(err);
+      });
+    },
+    acceptRequest({commit},data){
+      console.log(data);
+      const URL = `${BASE_URL}/api/follow/accept`
+      axios.post(URL,data)
+      .then(response=>{
 
       });
     }

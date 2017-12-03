@@ -81,11 +81,21 @@ export default {
 		}
 		,
 		follow(){
-			this.$store.dispatch('follow',{_user:this.$store.state.user._id,user:this.user._id});
+			this.$store.dispatch('follow',{_user:this.$store.state.user._id,user:this.user._id})
+			.then(response=>{
+				let {following,follower}=response;
+				this.$socket.emit('followRequest',{following:following._id,follower:follower._id,_id:this.user._id,profile_img:this.$store.state.user.profile.profile_img,first_name:this.$store.state.user.first_name,last_name:this.$store.state.user.last_name,username:this.$store.state.user.profile.username});
+			})
 		},
 		cancel(){
 			this.$store.state.user.profile.following.forEach((e,i,a)=>{
-				if(e.user === this.user._id) this.$store.dispatch('cancel',{data:e,index:i});
+				if(e.user === this.user._id){
+					this.$store.dispatch('cancel',{data:e,index:i,user:this.user.profile._id,_user:this.$store.state.user._id})
+					.then(()=>{
+						console.log("2");
+						this.$socket.emit('getNotifications',{_id:this.$store.state.user.profile._id,to:this.user._id});
+					});
+				}
 			});
 		}
 

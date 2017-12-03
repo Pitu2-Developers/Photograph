@@ -61,7 +61,7 @@
         let {first_name,last_name,email,password,confirmPassword}=this.data;
         this.$store.dispatch('signup',{first_name,last_name,email,password,confirmPassword})
         .then(()=>{
-          // this.$router.go(this.$router.currentRoute);
+          document.cookie="index=false";
           location.reload();
           console.log("SUCCESS");
         })

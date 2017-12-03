@@ -1,8 +1,8 @@
 <template>
   <div >
     <section class="post-container">
-      <h1>MSG: {{msg}}</h1>
-      <Post :username='username' :profile_img="profile_img"></Post>
+      <!-- <h1>MSG: {{msg}}</h1> -->
+      <!-- <Post :username='username' :profile_img="profile_img"></Post> -->
     </section>
     <ImageButton @myEvent2="getImage"></ImageButton>
     <ModalPost @sendForm="sendForm" @closeModal="image.isLoading = !image.isLoading" :preview="image.preview" :profile_img="profile_img"  :condition="image.isLoading"></ModalPost>
@@ -52,6 +52,7 @@
         this.$store.dispatch('reload');
       }
       this.$socket.emit('login',this.$store.state.user._id);
+      document.cookie="index=false";
     },
     methods:{
       logout(){

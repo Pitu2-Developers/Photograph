@@ -22,7 +22,7 @@
 				<p>Posts</p>
 			</div>
 			<div>
-				<p>{{user.profile.followers.length}}</p>
+				<p>{{user.profile.followers.filter(f=>!f.isPending).length}}</p>
 				<p>Followers</p>
 			</div>
 			<div>

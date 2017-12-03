@@ -1,6 +1,6 @@
 <template>
     <header ref="header"  :class="{'header':true, 'center':true,'fixed':isScroll}">
-      <button  @click="log()" type="button" name="button">A</button>
+      <!-- <button  @click="log()" type="button" name="button">A</button> -->
       <div  class="container container--header">
         <div class="header__logo">
           <router-link to="/" class="header__title">Photograp</router-link>
@@ -45,10 +45,17 @@ export default {
       showNotifications:true
     }
   },
-  methods:{
-    log(){
-      this.$socket.emit('message',{username:this.username});
+  sockets:{
+    getNotifications(requests){
+      this.requests=requests;
+      console.log(requests);
     },
+    followRequest(request){
+      console.log(request);
+      this.requests.push(request);
+    }
+  },
+  methods:{
     logout(){
       this.$socket.emit('logout',this.$store.state.user._id);
       this.$store.dispatch('logout')
@@ -58,8 +65,7 @@ export default {
       this.isScroll=window.scrollY>0
     },
     clickHandle(e){
-      // console.log(e.target);
-      // console.log(this.$refs.search_bar.$el.children[0]);
+
       if((e.target != this.$refs.logout && this.isShow) || (e.target != this.$refs.search && this.showInput) && e.target != this.$refs.search_bar.$el.children[0] ){
         this.isShow=false;
         this.showInput=false;
@@ -68,6 +74,7 @@ export default {
   },
   created(){
     window.addEventListener('click',this.clickHandle);
+    this.$socket.emit('getNotifications',{_id:this.$store.state.user.profile._id,to:null});
   },
   beforeMount(){
     window.addEventListener('scroll',this.handleScroll);

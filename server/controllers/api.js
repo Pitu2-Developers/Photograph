@@ -8,16 +8,22 @@ import fs from 'fs';
 import mongoose from 'mongoose';
 
 
-export const cancelFollowController=(req,res)=>{
+export const acceptFollowController=(req,res)=>{
 
+  
+};
+
+export const cancelFollowController=(req,res)=>{
   Friendship.findOneAndRemove({_id:req.body.data._id},(e,f)=>{
-    console.log(f);
-    return res.status(200).send({_id:f._id,index:req.body.index});
+    Profile.findOne({_id:req.body.user},).populate('followers').exec((e,p)=>{
+      p.followers=p.followers.filter(e=> !e.user.equals(mongoose.Types.ObjectId(req.body._user) ));
+      p.save()
+      return res.status(200).send({_id:f._id,index:req.body.index});
+    });
   })
 };
 
 export const followController=(req,res)=>{
-  // console.log(req.body);
   User.findOne({_id:req.body._user})
   .populate({
     path:'profile',
@@ -27,23 +33,33 @@ export const followController=(req,res)=>{
     }
   })
   .exec((e,u)=>{
-      // console.log(u.profile.following);
       if(e) return res.status(500).send('Server error');
-
       let isExist= u.profile.following.filter(f => f.user.equals(req.body.user));
-
-      console.log(isExist);
-
       if(isExist.length === 0 ){
-        let friendship=new Friendship({
+        let following=new Friendship({
           user:req.body.user
         });
-        friendship.save();
-        u.profile.following.push(friendship._id);
-        console.log(u);
+        following.save();
+
+        u.profile.following.push(following._id);
         u.profile.save();
-        console.log(":D");
-        return res.status(200).send(friendship);
+
+        User.findOne({_id:req.body.user})
+        .populate({
+          path:'profile',
+          select:'followers',
+          populate:{
+            path:'followers'
+          }
+        })
+        .exec((e,u2)=>{
+          let follower=new Friendship({user:req.body._user});
+          follower.save();
+          u2.profile.followers.push(follower._id);
+          u2.profile.save();
+          return res.status(200).send({following,follower});
+        });
+
       }else{
         console.log(":()");
       }
@@ -64,21 +80,24 @@ export const updateUser=(req,res)=>{
 
 
 export const testController=(req,res)=>{
-  //59fb27a3d6c6a02c9cc3045a
-  //JesusIgnacio
-  let isValid = require('mongoose').Types.ObjectId.isValid;
-  const id='JesusIgnacio'
-  User.find({})
-  .populate({
+
+  //
+  User.find({}).populate({
     path:'profile',
     populate:{
-      path:'following followers post'
+      path:'followers following'
     }
-  })
-  .exec((e,u)=>{
-    res.status(200).send(u);
-  });
+  }).exec((e,u)=> res.status(200).send(u));
 
+  //
+  // Profile.update({},{$set:{followers:[],following:[]}},{multi:true},(e,u)=>{
+  //   Friendship.remove({}).exec();
+  //   res.send(u)
+  // });
+
+
+  // Friendship.find({}).
+  // exec((e,f)=> res.send(f));
 }
 
 
@@ -184,8 +203,6 @@ export const getCurrentUser=(req,res)=>{
   .exec((e,users)=>{
     if(e) return res.status(500).send('Server error');
     let user = users.filter( u=> u._id.equals(id) || u.profile.username === id)[0];
-    console.log(id);
-    console.log(user);
     return res.status(200).send(user);
 
   })

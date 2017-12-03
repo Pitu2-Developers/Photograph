@@ -12,14 +12,14 @@
 
       </li>
       <li v-for="request in requests" class="notification">
-        <img :src="request.img" alt="">
+        <img :src="request.user.profile.profile_img" alt="">
         <div class="notification__con">
           <div>
-            <p class="notification__username">{{request.username}}</p>
-            <p class="notification__name">{{request.name}}</p>
+            <p class="notification__username">{{request.user.profile.username}}</p>
+            <p class="notification__name">{{request.user.first_name}} {{request.user.last_name}}</p>
           </div>
           <div class="notification__icons">
-            <i class="icon-check"></i>
+            <i @click="acceptRequest(request)" class="icon-check"></i>
             <i class="icon-times"></i>
           </div>
         </div>
@@ -40,8 +40,19 @@ export default {
       show:false
     }
   },
+  created(){
+    console.log(this.requests);
+  },
+  sockets:{
+    sendNotification(){
+    }
+  },
   methods:{
-
+    acceptRequest(e){
+      let {follower,following}=e;
+      console.log(e);
+      this.$store.dispatch('acceptRequest',{follower,following});
+    }
   }
 }
 </script>
