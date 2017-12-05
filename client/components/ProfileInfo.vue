@@ -34,11 +34,18 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
+
 export default {
 	props:['user'],
 	data(){
 		return{
 			currentUser:this.$store.state.user.profile.username
+		}
+	},
+	computed:{
+		getFollowingLen(){
+			return this.user.profile.following.filter(f=>!f.isPending).length;
 		}
 	}
 }

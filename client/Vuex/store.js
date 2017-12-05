@@ -16,7 +16,10 @@ export const initialState={
     first_name:null,
     last_name:null,
     email:null,
-    profile:null,
+    profile:{
+      followers:[],
+      following:[]
+    },
     socket_id:null
   },
   posts:[]

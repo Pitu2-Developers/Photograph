@@ -1,6 +1,5 @@
 <template>
     <header ref="header"  :class="{'header':true, 'center':true,'fixed':isScroll}">
-      <!-- <button  @click="log()" type="button" name="button">A</button> -->
       <div  class="container container--header">
         <div class="header__logo">
           <router-link to="/" class="header__title">Photograp</router-link>
@@ -12,7 +11,7 @@
             <router-link :to="username" title="Profile" class="icon-user"></router-link>
           </li>
 
-          <Notifications  ref="notification"  :requests="requests"></Notifications>
+          <Notifications ref="notification"></Notifications>
 
           <li class="header__li header__li--search">
             <i @click="showInput=!showInput" ref="search"  id="search" title="Explore" class="icon-search"></i>
@@ -41,19 +40,12 @@ export default {
       isShow:false,
       showInput:false,
       username:this.$store.state.user.profile.username,
-      requests:[],
+      // requests:[],
       showNotifications:true
     }
   },
   sockets:{
-    getNotifications(requests){
-      this.requests=requests;
-      console.log(requests);
-    },
-    followRequest(request){
-      console.log(request);
-      this.requests.push(request);
-    }
+
   },
   methods:{
     logout(){
@@ -74,7 +66,7 @@ export default {
   },
   created(){
     window.addEventListener('click',this.clickHandle);
-    this.$socket.emit('getNotifications',{_id:this.$store.state.user.profile._id,to:null});
+    // this.$socket.emit('getNotifications',{_id:this.$store.state.user.profile._id,to:null});
   },
   beforeMount(){
     window.addEventListener('scroll',this.handleScroll);

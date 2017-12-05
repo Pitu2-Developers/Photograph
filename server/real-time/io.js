@@ -34,11 +34,19 @@ module.exports=(server)=>{
     socket.on('followRequest',data=>{
       User.findOne({_id:data._id},'socket_id')
       .exec((e,u)=>{
-          let {first_name,last_name,_id,profile_img,username,following,follower}=data;
-          console.log(following);
-          if(io.sockets.connected[u.socket_id]) io.sockets.connected[u.socket_id].emit('followRequest',{following,follower,user:{first_name,last_name,profile:{profile_img,username},socket_id:u.socket_id}});
+          let {first_name,last_name,_id,profile_img,username,uuid}=data;
+          if(io.sockets.connected[u.socket_id]) io.sockets.connected[u.socket_id].emit('followRequest',{isPending:true,uuid,user:{first_name,last_name,profile:{profile_img,username},socket_id:u.socket_id}});
 
       });
+
+    });
+
+    socket.on('acceptRequest',data=>{
+      console.log("DATA");
+        console.log(data);
+        if(io.sockets.connected[data.receiver.socket_id]) io.sockets.connected[data.receiver.socket_id].emit('reload');
+
+
     });
 
     socket.on('cancelRequest',data=>{
@@ -64,32 +72,31 @@ module.exports=(server)=>{
           }
         })
         .exec((e,p)=>{
-          socket.emit('getNotifications',p.followers);
+          let {followers}=p
+          socket.emit('getNotifications',{followers});
         });
       }else{
         User.findOne({_id:data.to},'profile socket_id').
         populate({
           path:'profile',
-          select:'followers',
+          select:'followers following',
           populate:{
-            path:'followers',
+            path:'followers following',
             match:{
               isPending:true
             }
           }
         })
         .exec((e,u)=>{
-          io.sockets.connected[u.socket_id].emit('getNotifications',u.profile.followers);
+          let {following,followers}=u.profile,notifications=[];
+          if(io.sockets.connected[u.socket_id]) io.sockets.connected[u.socket_id].emit('getNotifications',{following,followers});
 
         });
       }
 
     });
 
-    socket.on('message',msg=>{
-      console.log(msg);
-      io.sockets.emit('follow',msg)
-    });
+
 
     socket.on('disconnect',()=>{
       console.log(`${socket.id} DISCONNECTED `);

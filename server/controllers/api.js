@@ -8,9 +8,35 @@ import fs from 'fs';
 import mongoose from 'mongoose';
 
 
+export const getFollows=(req,res)=>{
+  let _id=req.params.id
+
+  Profile.findOne({_id})
+  .populate({
+    path:'following followers'
+  })
+  .exec((e,p)=>{
+    // console.log(p);
+    return res.status(200).send({following:p.following,followers:p.followers});
+  });
+
+};
+
 export const acceptFollowController=(req,res)=>{
 
-  
+  Friendship.find({uuid:req.body.uuid})
+  .exec((e,f)=>{
+    if(e) return res.status(500).send('Server error');
+    f[0].isPending=false;
+    f[1].isPending=false;
+
+    f[0].seen=true;
+    f[0].save();
+    f[1].save()
+    console.log(f[1]);
+    return res.status(200).send(f[1]);
+  });
+
 };
 
 export const cancelFollowController=(req,res)=>{
@@ -36,9 +62,14 @@ export const followController=(req,res)=>{
       if(e) return res.status(500).send('Server error');
       let isExist= u.profile.following.filter(f => f.user.equals(req.body.user));
       if(isExist.length === 0 ){
+        let uuid=mongoose.Types.ObjectId();
+
         let following=new Friendship({
-          user:req.body.user
+          user:req.body.user,
+          uuid,
+          requestType:'FOLLOWING'
         });
+
         following.save();
 
         u.profile.following.push(following._id);
@@ -53,11 +84,14 @@ export const followController=(req,res)=>{
           }
         })
         .exec((e,u2)=>{
-          let follower=new Friendship({user:req.body._user});
+          let follower=new Friendship({user:req.body._user,uuid,requestType:'FOLLOWER'});
+
           follower.save();
+
+
           u2.profile.followers.push(follower._id);
           u2.profile.save();
-          return res.status(200).send({following,follower});
+          return res.status(200).send({following});
         });
 
       }else{
@@ -80,22 +114,33 @@ export const updateUser=(req,res)=>{
 
 
 export const testController=(req,res)=>{
-
+// 5a166fb782103b0dd819da91
   //
-  User.find({}).populate({
+  User.find({})
+  .populate({
     path:'profile',
     populate:{
-      path:'followers following'
+      path:'following followers'
     }
-  }).exec((e,u)=> res.status(200).send(u));
 
+  })
+  .exec((e,u)=>res.send(u))
+
+  // Profile.find({_id:'5a166fb782103b0dd819da91'}).populate({
+  //   path:'following followers',
+  //   match:{
+  //     isPending:true
+  //   }
   //
+  // }).exec((e,u)=> res.status(200).send(u));
+
+  // //
   // Profile.update({},{$set:{followers:[],following:[]}},{multi:true},(e,u)=>{
   //   Friendship.remove({}).exec();
   //   res.send(u)
   // });
 
-
+  //
   // Friendship.find({}).
   // exec((e,f)=> res.send(f));
 }
@@ -203,6 +248,7 @@ export const getCurrentUser=(req,res)=>{
   .exec((e,users)=>{
     if(e) return res.status(500).send('Server error');
     let user = users.filter( u=> u._id.equals(id) || u.profile.username === id)[0];
+    console.log(user);
     return res.status(200).send(user);
 
   })

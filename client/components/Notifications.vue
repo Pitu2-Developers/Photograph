@@ -1,5 +1,6 @@
 <template lang="html">
-  <li @click="show = !show" class="header__li notifications">
+  <li  @click="show = !show" class="header__li notifications">
+
     <div v-if="requests.length>0" class="notifications__count">
       <span  >{{requests.length}}</span>
     </div>
@@ -7,11 +8,13 @@
 
     <ul v-if="show" class="notification-box">
       <li class="notification notification--header">
+        <p  class="notification__title">Notifications</p>
+      </li>
+      <li class="notification notification--header">
         <p v-if="requests.length>0" class="notification__title">Follow requests</p>
         <p v-else="" class="notification__title">Any requests</p>
-
       </li>
-      <li v-for="request in requests" class="notification">
+      <li v-for="request in requests" v-if="request.isPending" class="notification">
         <img :src="request.user.profile.profile_img" alt="">
         <div class="notification__con">
           <div>
@@ -31,27 +34,37 @@
 
 <script>
 export default {
-  props:['requests'],
+  created(){
+    this.$socket.emit('getNotifications',{_id:this.$store.state.user.profile._id,to:null});
+  },
   data(){
     return{
       img:this.$store.state.user.profile_img,
       name:`${this.$store.state.user.first_name} ${this.$store.state.user.last_name}`,
       username:this.$store.state.user.username,
-      show:false
+      show:false,
+      requests:[],
+      notification:[]
     }
   },
-  created(){
-    console.log(this.requests);
-  },
   sockets:{
-    sendNotification(){
+    getNotifications(requests){
+      this.requests=requests.followers;
+    },
+    followRequest(request){
+      this.requests.push(request);
+    },
+    sendNotification(notifications){
+      
     }
   },
   methods:{
     acceptRequest(e){
-      let {follower,following}=e;
-      console.log(e);
-      this.$store.dispatch('acceptRequest',{follower,following});
+      this.$store.dispatch('acceptRequest',{uuid:e.uuid,user:this.$store.state.user.profile._id})
+      .then(()=>{
+        this.$socket.emit('getNotifications',{_id:this.$store.state.user.profile._id,to:null});
+        this.$socket.emit('acceptRequest',{receiver:e.user,sender:this.$store.state.user.profile.username});
+      });
     }
   }
 }

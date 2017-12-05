@@ -18,6 +18,14 @@ export const FOLLOW='FOLLOW';
 export const FOLLOW_SUCCESS='FOLLOW_SUCCESS';
 export const FOLLOW_ERROR='FOLLOW_ERROR';
 
+export const REQUEST='REQUEST';
+export const REQUEST_SUCCESS='REQUEST_SUCCESS';
+export const REQUEST_ERROR='REQUEST_ERROR';
+
+export const SET_FOLLOW ='SET_FOLLOW';
+
+
+
 export const ADD_USER ='ADD_USER'
 
 export const LOGOUT ='LOGOUT';

@@ -1,6 +1,7 @@
 
 import {
-  CANCEL_REQUEST,
+  SET_FOLLOW,REQUEST,
+  REQUEST_SUCCESS,CANCEL_REQUEST,
   LOGIN,LOGIN_SUCCESS,LOGIN_ERROR
   ,LOGOUT,ADD_USER,UPLOAD_IMAGE,
   UPLOAD_IMAGE_SUCCESS,UPLOAD_IMAGE_ERROR,
@@ -13,6 +14,11 @@ import {decodeToken} from '../../services';
 const BASE_URL='http://localhost:8000';
 
 export default{
+    setFollow({commit},data){
+      console.log("SWET FOLLOW");
+      console.log(data);
+      commit(SET_FOLLOW,data);
+    },
     socket_login({commit}, data){
       commit(LOGIN);
       const URL=`${BASE_URL}/auth/photograph`;
@@ -105,8 +111,8 @@ export default{
     },
     follow({commit},data){
       const URL = `${BASE_URL}/api/follow`;
+
       commit(FOLLOW);
-      console.log(data);
       return axios.post(URL,data)
       .then(response=>{
         commit(FOLLOW_SUCCESS,response.data.following);
@@ -144,11 +150,20 @@ export default{
       });
     },
     acceptRequest({commit},data){
-      console.log(data);
       const URL = `${BASE_URL}/api/follow/accept`
-      axios.post(URL,data)
+      return axios.post(URL,data)
       .then(response=>{
-
+        commit(REQUEST_SUCCESS,response.data)
       });
+    },
+    getFollows({commit},data){
+      const URL = `${BASE_URL}/api/${data}/follows`;
+      return axios.get(URL)
+      .then(response=>{
+        console.log(response.data);
+        commit(SET_FOLLOW,response.data);
+      });
+
     }
+
 }

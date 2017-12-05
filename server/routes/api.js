@@ -1,5 +1,6 @@
 import express from 'express';
 import {
+  getFollows,
   cancelFollowController,acceptFollowController,followController,updateUser,
   createUser,testController,uploadController,
   getCurrentUser,getAllPosts,searchController} from '../controllers/api.js';
@@ -20,6 +21,9 @@ api.post('/users',createUser);
 api.post('/follow',followController);
 api.post('/follow/cancel',cancelFollowController);
 api.post('/follow/accept',acceptFollowController);
+api.get('/:id/follows',getFollows);
+
+
 
 api.get('/users/search/:username',searchController);
 
