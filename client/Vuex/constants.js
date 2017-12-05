@@ -2,6 +2,7 @@ export const LOGIN ='LOGIN';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
 
+export const SET_POST='SET_POST';
 
 export const FETCH_DATA ='FETCH_DATA';
 export const FETCH_DATA_SUCCESS ='FETCH_DATA_SUCCESS';

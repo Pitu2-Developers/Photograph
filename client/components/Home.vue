@@ -2,7 +2,7 @@
   <div >
     <section class="post-container">
       <!-- <h1>MSG: {{msg}}</h1> -->
-      <!-- <Post :username='username' :profile_img="profile_img"></Post> -->
+      <Post v-for="post in posts" :post="post" :key="post._id"></Post>
     </section>
     <ImageButton @myEvent2="getImage"></ImageButton>
     <ModalPost @sendForm="sendForm" @closeModal="image.isLoading = !image.isLoading" :preview="image.preview" :profile_img="profile_img"  :condition="image.isLoading"></ModalPost>
@@ -23,7 +23,7 @@
       return{
         username:this.$store.state.user.profile.username,
         profile_img:this.$store.state.user.profile.profile_img,
-        post:[],
+        posts:this.$store.state.posts,
         msg:'',
         image:{
           file:null,
@@ -53,6 +53,7 @@
       }
       this.$socket.emit('login',this.$store.state.user._id);
       document.cookie="index=false";
+      this.$store.dispatch('getPost',this.$store.state.user.profile._id);
     },
     methods:{
       logout(){
@@ -72,6 +73,7 @@
         this.$store.dispatch('upload',data)
         .then(()=>{
           this.$store.dispatch('fetch',{type:1,url:`/api/users/${this.$store.state.user._id}/posts`});
+
           this.image.isLoading=false;
         })
         .catch((e)=>{

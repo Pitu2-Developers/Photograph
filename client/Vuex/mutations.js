@@ -1,4 +1,5 @@
 import {
+  SET_POST,
   SET_FOLLOW,REQUEST,REQUEST_SUCCESS,REQUEST_ERROR,
   CANCEL_REQUEST,LOGIN
   ,LOGIN_SUCCESS,LOGIN_ERROR,
@@ -9,6 +10,9 @@ import {initialState} from './store';
 export default{
   [LOGIN] (state){
     state.isLoading=true;
+  },
+  [SET_POST](state,data){
+    state.posts=data;
   },
   [SET_FOLLOW](state,data){
     state.user.profile.followers=data.followers;

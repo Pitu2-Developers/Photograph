@@ -6,6 +6,7 @@ import Friendship from '../models/friendship';
 import {createToken} from '../../services/index';
 import fs from 'fs';
 import mongoose from 'mongoose';
+import moment from 'moment';
 
 export const setNotificationSeenController=(req,res)=>{
   let _id = req.params.id;
@@ -121,15 +122,48 @@ export const updateUser=(req,res)=>{
 export const testController=(req,res)=>{
 // 5a166fb782103b0dd819da91
   //
-  User.find({})
+  Profile.findOne({_id:'5a166fb782103b0dd819da91'},'following')
   .populate({
-    path:'profile',
+    path:'following',
+    select:'user',
     populate:{
-      path:'following followers'
+      path:'user',
+      select:'profile',
+      populate:{
+        path:'profile',
+        select:'posts',
+        populate:{
+          path:'posts',
+          populate:{
+            path:'_creator',
+            populate:{
+              path:'profile'
+            }
+          }
+        }
+      }
     }
-
   })
-  .exec((e,u)=>res.send(u))
+  .exec((e,p)=>{
+    let Allposts=[]
+    p.following.forEach((f)=>{
+        let {posts}=f.user.profile;
+        posts.forEach(p=>{
+          Allposts.push(p);
+        });
+    });
+    console.log(Allposts);
+    return res.status(200).send(p);
+  });
+  // User.find({})
+  // .populate({
+  //   path:'profile',
+  //   populate:{
+  //     path:'following followers'
+  //   }
+  //
+  // })
+  // .exec((e,u)=>res.send(u))
 
   // Profile.find({_id:'5a166fb782103b0dd819da91'}).populate({
   //   path:'following followers',
@@ -180,12 +214,40 @@ export const  getUsers=(req,res)=>{
 
 
 export const getAllPosts=(req,res)=>{
-  const id=req.params.id
-  User.findOne({_id:id})
-  .populate('posts','-__v')
+  const _id=req.params.id
+  Profile.findOne({_id},'following')
+  .populate({
+    path:'following',
+    select:'user',
+    populate:{
+      path:'user',
+      select:'profile',
+      populate:{
+        path:'profile',
+        select:'posts',
+        populate:{
+          path:'posts',
+          populate:{
+            path:'_creator',
+            populate:{
+              path:'profile'
+            }
+          }
+        }
+      }
+    }
+  })
   .exec((e,p)=>{
-    if(e) return res.status(500).send(`Server error ${e}`);
-    return res.status(200).send(p.posts);
+    let Allposts=[]
+    p.following.forEach((f)=>{
+        let {posts}=f.user.profile;
+        posts.forEach(p=>{
+          p.created_at=moment(p.created_at).fromNow();
+          Allposts.push(p);
+        });
+    });
+    console.log(Allposts);
+    return res.status(200).send(Allposts);
   });
 };
 

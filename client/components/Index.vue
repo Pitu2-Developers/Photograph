@@ -1,5 +1,5 @@
 <template >
-  <div >
+  <div class="body">
 		<main class="container main-index center">
 			<section class="form">
 				<div class="form__header">

@@ -1,5 +1,6 @@
 
 import {
+  SET_POST,
   SET_FOLLOW,REQUEST,
   REQUEST_SUCCESS,CANCEL_REQUEST,
   LOGIN,LOGIN_SUCCESS,LOGIN_ERROR
@@ -14,6 +15,13 @@ import {decodeToken} from '../../services';
 const BASE_URL='http://localhost:8000';
 
 export default{
+    getPost({commit},data){
+      const URL = `${BASE_URL}/api/users/${data}/posts`
+      return axios.get(URL)
+      .then(response=>{
+        commit(SET_POST,response.data);
+      });
+    },
     setNotificationSeen({commit},data){
       console.log(`ID: ${data}`);
       const URL=`${BASE_URL}/api/follow/${data}`;
