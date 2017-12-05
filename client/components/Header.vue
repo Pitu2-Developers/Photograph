@@ -11,7 +11,7 @@
             <router-link :to="username" title="Profile" class="icon-user"></router-link>
           </li>
 
-          <Notifications ref="notification"></Notifications>
+          <Notifications ></Notifications>
 
           <li class="header__li header__li--search">
             <i @click="showInput=!showInput" ref="search"  id="search" title="Explore" class="icon-search"></i>
@@ -57,8 +57,10 @@ export default {
       this.isScroll=window.scrollY>0
     },
     clickHandle(e){
-
-      if((e.target != this.$refs.logout && this.isShow) || (e.target != this.$refs.search && this.showInput) && e.target != this.$refs.search_bar.$el.children[0] ){
+      // console.log(((e.target != this.$refs.search && this.showInput) && e.target != this.$refs.search_bar.$el.children[0]));
+      // ((e.target != this.$refs.notification && this.showNoti) && e.target != this.$refs.notification.$el.children[0])
+      if((e.target != this.$refs.logout && this.isShow) ||
+          (e.target != this.$refs.search && this.showInput) && e.target != this.$refs.search_bar.$el.children[0]){
         this.isShow=false;
         this.showInput=false;
       }

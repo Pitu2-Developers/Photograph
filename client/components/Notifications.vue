@@ -1,15 +1,30 @@
 <template lang="html">
-  <li  @click="show = !show" class="header__li notifications">
+  <li   @click="setShow()" class="header__li notifications">
 
-    <div v-if="requests.length>0" class="notifications__count">
-      <span  >{{requests.length}}</span>
+    <div v-if="requests.length>0 || notifications.length>0" class="notifications__count">
+      <span  >{{requests.length+notifications.length}}</span>
     </div>
-    <i  title="Notifications" class="icon-heart"></i>
+    <i ref="notification" title="Notifications" class="icon-heart"></i>
 
     <ul v-if="show" class="notification-box">
       <li class="notification notification--header">
         <p  class="notification__title">Notifications</p>
       </li>
+
+      <li class="notification notification--list"  v-for="notification in notifications">
+          <img :src="notification.profile_img">
+          <!-- <p>{{notification}}</p> -->
+          <div class="notification__con">
+            <div>
+              <p class="notification__p"><span class="notification__username">{{notification.username}}</span> accepted your follow request.</p>
+            </div>
+            <div class="notification__icons">
+              <i @click="setNotificationSeen(notification._id) " class="icon-times"></i>
+
+            </div>
+          </div>
+      </li>
+
       <li class="notification notification--header">
         <p v-if="requests.length>0" class="notification__title">Follow requests</p>
         <p v-else="" class="notification__title">Any requests</p>
@@ -36,6 +51,8 @@
 export default {
   created(){
     this.$socket.emit('getNotifications',{_id:this.$store.state.user.profile._id,to:null});
+    this.$socket.emit('getNotificationResponse',{_id:this.$store.state.user.profile._id,to:null});
+    window.addEventListener('click',this.clickHandle);
   },
   data(){
     return{
@@ -44,26 +61,49 @@ export default {
       username:this.$store.state.user.username,
       show:false,
       requests:[],
-      notification:[]
+      notifications:[]
     }
   },
   sockets:{
     getNotifications(requests){
-      this.requests=requests.followers;
+      let {followers}=requests;
+      // console.log(followers);
+      this.requests=followers;
+      // this.notifications=notifications;
+    },
+    getNotificationResponse(notifications){
+      this.notifications=notifications;
     },
     followRequest(request){
       this.requests.push(request);
     },
-    sendNotification(notifications){
-      
-    }
   },
   methods:{
+    clickHandle(e){
+      if(e.target != this.$refs.notification) this.show=false
+    },
+    setShow(){
+      this.show=!this.show
+      if(this.show){
+        this.$socket.emit('getNotifications',{_id:this.$store.state.user.profile._id,to:null});
+        this.$socket.emit('getNotificationResponse',{_id:this.$store.state.user.profile._id,to:null});
+      }
+
+    },
+    setNotificationSeen(e){
+      this.$store.dispatch('setNotificationSeen',e)
+      .then(()=>{
+        this.$socket.emit('getNotifications',{_id:this.$store.state.user.profile._id,to:null});
+        this.$socket.emit('getNotificationResponse',{_id:this.$store.state.user.profile._id,to:null});
+      });
+
+    },
     acceptRequest(e){
       this.$store.dispatch('acceptRequest',{uuid:e.uuid,user:this.$store.state.user.profile._id})
       .then(()=>{
         this.$socket.emit('getNotifications',{_id:this.$store.state.user.profile._id,to:null});
         this.$socket.emit('acceptRequest',{receiver:e.user,sender:this.$store.state.user.profile.username});
+        this.$socket.emit('getNotificationResponse',{_id:this.$store.state.user.profile._id,to:e.user._id});
       });
     }
   }

@@ -53,12 +53,75 @@ module.exports=(server)=>{
       console.log(data);
     });
 
+    socket.on('getNotificationResponse',data=>{
+      if(!data.to){
+        Profile.findOne({_id:data._id},'followers following')
+        .populate({
+          path:'followers following',
+          populate:{
+            path:'user',
+            select:'first_name last_name profile socket_id',
+            populate:{
+              path:'profile',
+              select:'profile_img username'
+            }
+          },
+          match:{
+            isPending:false
+          }
+        })
+        .exec((e,p)=>{
+          let {followers,following}=p,notifications=[];
+          following.forEach(f=>{
+            let {username,profile_img}=f.user.profile;
+            // console.log(`ID : ${f._id}`);
+            if(f.seen) notifications.push({username,profile_img,_id:f._id});
+          });
+          socket.emit('getNotificationResponse',notifications);
+        });
+      }else{
+        User.findOne({_id:data.to},'profile socket_id').
+        populate({
+          path:'profile',
+          select:'followers following',
+          populate:{
+            path:'followers following',
+            populate:{
+              path:'user',
+              select:'profile',
+              populate:{
+                path:'profile',
+                select:'username'
+              }
+            },
+            match:{
+              isPending:false
+            }
+          }
+        })
+        .exec((e,u)=>{
+          let {following}=u.profile,notifications=[];
+          // console.log(u);
+          following.forEach(f=>{
+            let {username,profile_img,_id}=f.user.profile;
+            // console.log(`ID ${f._id}`);
+            if(f.seen) notifications.push({username,profile_img,_id:f._id});
+          });
+          if(io.sockets.connected[u.socket_id]) io.sockets.connected[u.socket_id].emit('getNotificationResponse',notifications);
+
+        });
+      }
+
+
+
+    });
+
     socket.on('getNotifications',data=>{
       // io.sockets.connected[u.socket_id].emit('followRequest'
       if(!data.to){
-        Profile.findOne({_id:data._id},'followers')
+        Profile.findOne({_id:data._id},'followers following')
         .populate({
-          path:'followers',
+          path:'followers following',
           populate:{
             path:'user',
             select:'first_name last_name profile socket_id',
@@ -72,7 +135,8 @@ module.exports=(server)=>{
           }
         })
         .exec((e,p)=>{
-          let {followers}=p
+          let {followers,following}=p;
+          // console.log(followers);
           socket.emit('getNotifications',{followers});
         });
       }else{
@@ -82,13 +146,22 @@ module.exports=(server)=>{
           select:'followers following',
           populate:{
             path:'followers following',
+            populate:{
+              path:'user',
+              select:'profile',
+              populate:{
+                path:'profile',
+                select:'username'
+              }
+            },
             match:{
               isPending:true
             }
           }
         })
         .exec((e,u)=>{
-          let {following,followers}=u.profile,notifications=[];
+          let {following,followers}=u.profile;
+          // console.log(u);
           if(io.sockets.connected[u.socket_id]) io.sockets.connected[u.socket_id].emit('getNotifications',{following,followers});
 
         });
@@ -96,10 +169,9 @@ module.exports=(server)=>{
 
     });
 
-
-
     socket.on('disconnect',()=>{
-      console.log(`${socket.id} DISCONNECTED `);
+
+      console.log(`DESCONNECTING...` );
     });
 
     console.log(`New socket connected ${socket.id}`);

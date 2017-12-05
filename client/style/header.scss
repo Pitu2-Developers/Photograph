@@ -178,13 +178,15 @@
     border-bottom: thin solid rgba(gray,0.1);
     display: flex;
     align-items: center;
-    // background: red;
     &:last-child{
       // background: red;
       margin-bottom: 0;
     }
     &:hover{
       background: rgba(gray,0.1);
+    }
+
+    &__p{
     }
     &__con{
       display: flex;
@@ -235,4 +237,22 @@
       @include createArrow(2rem,-379%,400px,72%,5px,true);
     }
   }
+}
+
+.notification--list{
+  .notification__con{
+    p{
+      display: block;
+      // background: red;
+      font-size: 13px;
+      display: flex;
+      // justify-content: center;
+      align-items: center;
+      span{
+        display: block;
+        &:hover{background: none}
+      }
+    }
+  }
+  // background: red;
 }

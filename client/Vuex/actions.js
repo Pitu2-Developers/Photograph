@@ -14,6 +14,12 @@ import {decodeToken} from '../../services';
 const BASE_URL='http://localhost:8000';
 
 export default{
+    setNotificationSeen({commit},data){
+      console.log(`ID: ${data}`);
+      const URL=`${BASE_URL}/api/follow/${data}`;
+      return axios.get(URL)
+      .then(response=>{});
+    },
     setFollow({commit},data){
       console.log("SWET FOLLOW");
       console.log(data);

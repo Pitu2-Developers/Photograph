@@ -1,5 +1,6 @@
 import express from 'express';
 import {
+  setNotificationSeenController,
   getFollows,
   cancelFollowController,acceptFollowController,followController,updateUser,
   createUser,testController,uploadController,
@@ -19,6 +20,8 @@ api.post('/users/update/:id',updateUser);
 api.post('/users',createUser);
 
 api.post('/follow',followController);
+api.get('/follow/:id',setNotificationSeenController);
+
 api.post('/follow/cancel',cancelFollowController);
 api.post('/follow/accept',acceptFollowController);
 api.get('/:id/follows',getFollows);

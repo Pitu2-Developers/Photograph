@@ -7,6 +7,11 @@ import {createToken} from '../../services/index';
 import fs from 'fs';
 import mongoose from 'mongoose';
 
+export const setNotificationSeenController=(req,res)=>{
+  let _id = req.params.id;
+  // console.log(`QUE PEDOOOOOOO! ${_id}`);
+  Friendship.update({_id},{seen:false}).exec();
+};
 
 export const getFollows=(req,res)=>{
   let _id=req.params.id
@@ -29,11 +34,11 @@ export const acceptFollowController=(req,res)=>{
     if(e) return res.status(500).send('Server error');
     f[0].isPending=false;
     f[1].isPending=false;
-
+    f[1].seen=true
     f[0].seen=true;
     f[0].save();
     f[1].save()
-    console.log(f[1]);
+    // console.log(f[1]);
     return res.status(200).send(f[1]);
   });
 
